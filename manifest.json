@@ -1,0 +1,30 @@
+{
+  "name": "Bcode-backup",
+  "short_name": "Bcode-backup",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#03132a",
+  "theme_color": "#03132a",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "description": "Ancienne version de Bcode"
+}
