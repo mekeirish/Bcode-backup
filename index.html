@@ -5,39 +5,168 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#05070b">
 <meta name="color-scheme" content="dark">
-<title>Bcode backup</title>
+<title>B5</title>
 <style>
-/* Cyber glass : fond uni, verre translucide, filets cyan */
+/* Système visuel — profondeur, surfaces, contours et accents centralisés */
 :root {
-  --bg: #05070b; --text: #e9eef5; --dim: #8a94a6;
-  --accent: #22d3ee; --ok: #34d399; --warn: #fbbf24; --err: #ff6b7a;
-  --glass: rgba(255, 255, 255, .055); --glass2: rgba(255, 255, 255, .09); --edge: rgba(255, 255, 255, .13);
+  color-scheme: dark;
+  --bg: #05070b;
+  --text: #edf4fb;
+  --dim: #91a0b4;
+  --accent: #22d3ee;
+  --ok: #34d399;
+  --warn: #fbbf24;
+  --err: #ff6b7a;
+  --glass: rgba(15, 22, 33, .76);
+  --glass2: rgba(255, 255, 255, .075);
+  --edge: rgba(190, 216, 239, .13);
+  --edge-strong: rgba(190, 216, 239, .22);
+  --cyan-soft: rgba(34, 211, 238, .12);
+  --cyan-edge: rgba(34, 211, 238, .42);
+  --surface-deep: rgba(5, 9, 15, .76);
+  --shadow-card: 0 12px 32px rgba(0, 0, 0, .32);
+  --shadow-elevated: 0 20px 52px rgba(0, 0, 0, .46);
+  --shadow-glow: 0 0 24px rgba(34, 211, 238, .14);
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 * { box-sizing: border-box; }
-html { background: var(--bg); }
-html, body { height: 100%; margin: 0; color: var(--text); color-scheme: dark;
-  font: 15px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-tap-highlight-color: transparent; overscroll-behavior: none; }
+html {
+  background: var(--bg);
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  color: var(--text);
+  color-scheme: dark;
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
 
-.glass { background: var(--glass); border: 1px solid var(--edge); border-top-color: rgba(34, 211, 238, .30); border-radius: 16px;
-  box-shadow: 0 8px 28px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .08); }
+body {
+  background:
+    radial-gradient(ellipse at 50% -18%, rgba(17, 91, 118, .26), transparent 48%),
+    radial-gradient(ellipse at 100% 42%, rgba(29, 59, 102, .12), transparent 38%),
+    radial-gradient(ellipse at 0% 82%, rgba(16, 92, 94, .1), transparent 34%),
+    var(--bg);
+}
+
+.glass {
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .022)),
+    var(--glass);
+  border: 1px solid var(--edge);
+  border-top-color: rgba(34, 211, 238, .34);
+  border-radius: 18px;
+  box-shadow:
+    var(--shadow-card),
+    inset 0 1px 0 rgba(255, 255, 255, .075);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  backdrop-filter: blur(18px) saturate(135%);
+}
 
 /* ---------- Écran principal ---------- */
-.app { min-height: 100vh; min-height: 100dvh; max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px;
-  padding: max(10px, env(safe-area-inset-top)) 12px max(8px, env(safe-area-inset-bottom)); }
-.bar { display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 16px; }
-.brand { flex: 1; font-weight: 700; font-size: 18px; letter-spacing: .6px; }
-.trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.code { flex: 1 1 auto; min-height: 130px; max-height: 46vh; max-height: 46dvh; display: flex; padding: 6px; position: relative; }
-/* Boutons A− / A+ : petite paire flottante dans le coin du champ code */
-.fsz { position: absolute; right: 14px; bottom: 12px; z-index: 2; display: flex; gap: 6px; opacity: .6; }
+.app {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: max(14px, env(safe-area-inset-top)) 14px max(12px, env(safe-area-inset-bottom));
+}
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 58px;
+  padding: 8px 10px 8px 18px;
+}
+.brand {
+  flex: 1;
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: .8px;
+  color: #f3fbff;
+  text-shadow: 0 0 18px rgba(34, 211, 238, .22);
+}
+.trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.code {
+  flex: 1 1 auto;
+  min-height: 130px;
+  max-height: 46vh;
+  max-height: 46dvh;
+  display: flex;
+  padding: 8px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background:
+    linear-gradient(145deg, rgba(17, 27, 40, .82), rgba(7, 10, 17, .94)),
+    var(--glass);
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, .38),
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    0 0 30px rgba(34, 211, 238, .035);
+}
+.fsz {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  z-index: 2;
+  display: flex;
+  gap: 6px;
+  opacity: .72;
+  transition: opacity .18s ease;
+}
+
+.code:focus-within .fsz {
+  opacity: 1;
+}
 .fsz .iconbtn { height: 30px; min-width: 36px; padding: 0 8px; border-radius: 10px; font-size: 12.5px; }
-#src { flex: 1; min-width: 0; height: auto; align-self: stretch; resize: none; border: 0; outline: 0; background: transparent; color: var(--text);
-  font-family: var(--mono); font-size: var(--cfs, 12px); line-height: var(--clh, 18px); padding: 8px; white-space: pre; overflow: auto; tab-size: 2; }
+#src {
+  flex: 1;
+  min-width: 0;
+  height: auto;
+  align-self: stretch;
+  resize: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: var(--cfs, 12px);
+  line-height: var(--clh, 18px);
+  padding: 10px;
+  white-space: pre;
+  overflow: auto;
+  tab-size: 2;
+  scrollbar-color: rgba(145, 160, 180, .32) transparent;
+}
 #src::placeholder { color: var(--dim); }
-/* Coloration syntaxique : la couche #hl dessine seulement les lignes visibles derrière le champ */
-#hl { position: absolute; inset: 6px; margin: 0; padding: 8px; overflow: hidden; pointer-events: none;
-  font-family: var(--mono); font-size: var(--cfs, 12px); line-height: var(--clh, 18px); white-space: pre; tab-size: 2; letter-spacing: normal; color: var(--text); -webkit-text-size-adjust: 100%; }
+#hl {
+  position: absolute;
+  inset: 8px;
+  margin: 0;
+  padding: 10px;
+  overflow: hidden;
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: var(--cfs, 12px);
+  line-height: var(--clh, 18px);
+  white-space: pre;
+  tab-size: 2;
+  letter-spacing: normal;
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+}
 #hl-in { will-change: transform; }
 #src.hl-on { position: relative; z-index: 1; color: transparent; caret-color: var(--text); -webkit-text-size-adjust: 100%; }
 #src.hl-on::selection { background: rgba(34, 211, 238, .30); }
@@ -53,16 +182,50 @@ html, body { height: 100%; margin: 0; color: var(--text); color-scheme: dark;
 .hl-r { color: #d16969; }
 .hl-tp { color: #808080; }
 .hl-sel { color: #d7ba7d; }
-.meta { display: flex; align-items: center; gap: 8px; }
-/* Rangée de boutons carrés toggle au-dessus du code, centrée */
-.toggles { display: flex; gap: 6px; justify-content: center; margin: 2px 2px 0; }
-.tg { width: 38px; height: 38px; padding: 0; border-radius: 12px; font: inherit; font-size: 16px; font-weight: 700;
-  color: var(--dim); background: var(--glass); border: 1px solid var(--edge);
-  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
-  transition: background .15s, border-color .15s, color .15s, box-shadow .15s;
-  -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
-.tg.on { color: #bdf4fc; background: rgba(34, 211, 238, .15); border-color: rgba(34, 211, 238, .55);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 0 14px rgba(34, 211, 238, .22); }
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: center;
+  margin: 2px 2px 0;
+}
+.tg {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 13px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dim);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .075), rgba(255, 255, 255, .025));
+  border: 1px solid var(--edge);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background .18s,
+    border-color .18s,
+    color .18s,
+    box-shadow .18s,
+    transform .12s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.tg.on {
+  color: #c8f8ff;
+  background: linear-gradient(145deg, rgba(34, 211, 238, .2), rgba(34, 211, 238, .075));
+  border-color: rgba(34, 211, 238, .52);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .12),
+    0 0 18px rgba(34, 211, 238, .16);
+}
 .tg:active { transform: translateY(1px) scale(.96); }
 .tg.help { color: var(--accent); font-size: 17px; }
 /* Aide des toggles : réutilise .ov / .panel */
@@ -74,94 +237,369 @@ html, body { height: 100%; margin: 0; color: var(--text); color-scheme: dark;
   font-weight: 700; color: #bdf4fc; background: rgba(34, 211, 238, .15); border: 1px solid rgba(34, 211, 238, .45); }
 .htxt { flex: 1; min-width: 0; font-size: 13.5px; line-height: 1.35; }
 .htxt b { color: var(--text); font-weight: 600; }
-.chip { display: inline-flex; align-items: center; gap: 6px; padding: 0 12px; height: 44px; border-radius: 14px; font-size: 13px; color: var(--dim); white-space: nowrap; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 15px;
+  font-size: 13px;
+  color: var(--dim);
+  white-space: nowrap;
+}
 .chip b { color: var(--text); font-weight: 600; }
 .chip b:first-child { color: var(--warn); }
 .chip b:nth-of-type(2) { color: var(--ok); }
-.lvl { flex: 1; display: flex; align-items: center; gap: 8px; padding: 0 6px 0 12px; height: 44px; border-radius: 14px; font-size: 13px; color: var(--dim); }
+.lvl {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 8px 0 14px;
+  height: 44px;
+  border-radius: 15px;
+  font-size: 13px;
+  color: var(--dim);
+  transition: border-color .18s, background .18s, box-shadow .18s;
+}
 .lvl select { flex: 1; min-width: 0; height: 36px; border: 0; background: transparent; color: var(--text); font: inherit; font-weight: 600; outline: 0; }
 .lvl select option { background: #12161f; }
-.center { display: flex; justify-content: center; }
+.center {
+  display: flex;
+  justify-content: center;
+}
 .center.first { margin-top: auto; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.sig { text-align: center; font-size: 11px; letter-spacing: .5px; color: var(--dim); opacity: .55; padding: 2px 0 0; user-select: none; }
+.sig {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: .55px;
+  color: var(--dim);
+  opacity: .58;
+  padding: 3px 0 0;
+  user-select: none;
+}
+.proj-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 5px 0;
+  font-size: 13px;
+  color: var(--warn);
+  font-weight: 650;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: opacity .16s ease, transform .16s ease;
+}
+.proj-bar:active { opacity: 0.7; }
+.proj-bar b { color: var(--warn); font-weight: 700; }
 
-/* Boutons : verre, filet lumineux, retour au toucher */
-.btn, .iconbtn, .sm { font: inherit; color: var(--text); cursor: pointer; background: var(--glass2); border: 1px solid var(--edge);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 6px 18px rgba(0, 0, 0, .40);
-  transition: transform .09s ease, border-color .15s, box-shadow .15s, background .15s;
-  -webkit-user-select: none; user-select: none; touch-action: manipulation; }
-.btn:hover, .iconbtn:hover, .sm:hover { border-color: rgba(34, 211, 238, .55); }
-.btn:active, .iconbtn:active, .sm:active { transform: translateY(1px) scale(.97); background: rgba(255, 255, 255, .15);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 0 0 1px rgba(34, 211, 238, .55), 0 0 18px rgba(34, 211, 238, .28); }
-.btn { display: flex; align-items: center; justify-content: center; gap: 9px; height: 58px; padding: 0 14px; border-radius: 16px;
-  font-weight: 600; font-size: 14.5px; line-height: 1.15; }
+/* Boutons : surfaces vitrées, contours subtils et retour au toucher */
+.btn,
+.iconbtn,
+.sm {
+  font: inherit;
+  color: var(--text);
+  cursor: pointer;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .035));
+  border: 1px solid var(--edge);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .1),
+    0 7px 18px rgba(0, 0, 0, .27);
+  transition:
+    transform .12s ease,
+    border-color .18s,
+    box-shadow .18s,
+    background .18s;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+.btn:hover,
+.iconbtn:hover,
+.sm:hover {
+  border-color: rgba(34, 211, 238, .48);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .12),
+    0 7px 20px rgba(0, 0, 0, .28),
+    0 0 16px rgba(34, 211, 238, .08);
+}
+.btn:active,
+.iconbtn:active,
+.sm:active {
+  transform: translateY(1px) scale(.97);
+  background: rgba(255, 255, 255, .14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .05),
+    0 0 0 1px rgba(34, 211, 238, .45),
+    0 0 18px rgba(34, 211, 238, .2);
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 58px;
+  padding: 0 14px;
+  border-radius: 17px;
+  font-weight: 650;
+  font-size: 14.5px;
+  line-height: 1.15;
+}
 .btn.tbtn { flex-direction: column; gap: 5px; height: 62px; padding: 0 6px; font-size: 12.5px; }
 .btn.cyan { background: rgba(34, 211, 238, .13); border-color: rgba(34, 211, 238, .45); color: #bdf4fc; }
 .btn.green { background: rgba(52, 211, 153, .13); border-color: rgba(52, 211, 153, .42); color: #c2f5e0; }
-.btn.hero { width: 78%; height: 60px; font-size: 15.5px; background: var(--accent); border-color: rgba(255, 255, 255, .28); color: #021014;
-  box-shadow: 0 0 22px rgba(34, 211, 238, .34), inset 0 1px 0 rgba(255, 255, 255, .45); }
-.btn.hero:hover { border-color: #fff; }
-.btn.hero:active { background: #67e8f9; box-shadow: 0 0 30px rgba(34, 211, 238, .6), inset 0 1px 0 rgba(255, 255, 255, .3); }
-.btn.small { height: 48px; font-size: 13.5px; border-radius: 14px; }
+.btn.hero {
+  color: #e2e7e9;
+  background: linear-gradient(145deg, #3b454b, #30383e);
+  border: 1px solid rgba(205, 216, 222, .2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .07),
+    0 4px 12px rgba(0, 0, 0, .2);
+}
+
+.btn.hero:focus-visible {
+  outline: 2px solid #a8c1c8;
+  outline-offset: 3px;
+  border-color: #a8c1c8;
+  box-shadow:
+    0 0 0 4px rgba(168, 193, 200, .18),
+    0 4px 12px rgba(0, 0, 0, .2);
+}
+.btn.hero:hover {
+  background: linear-gradient(145deg, #444f55, #374147);
+  border-color: rgba(205, 216, 222, .3);
+}
+.btn.hero:active {
+  background: #30383e;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, .24);
+  transform: scale(.98);
+}
+.btn.small {
+  height: 49px;
+  font-size: 13.5px;
+  border-radius: 15px;
+}
 .btn:disabled, .iconbtn:disabled { opacity: .4; }
-.iconbtn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; height: 44px; min-width: 44px; padding: 0 12px; border-radius: 14px;
-  font-size: 13.5px; font-weight: 600; }
-.ic { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.iconbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 44px;
+  min-width: 44px;
+  padding: 0 12px;
+  border-radius: 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+.ic {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
 #b-clear { color: #ff3b5c; }
 #b-clear .ic { filter: drop-shadow(0 0 4px rgba(255, 59, 92, .65)); }
 #b-copy-clean .ic { stroke: var(--ok); filter: drop-shadow(0 0 4px rgba(52, 211, 153, .65)); }
 #b-test .ic { stroke: var(--warn); filter: drop-shadow(0 0 4px rgba(251, 191, 36, .65)); }
 #b-hl[aria-pressed="true"] .ic { stroke: var(--accent); filter: drop-shadow(0 0 4px rgba(34, 211, 238, .65)); }
 #b-hl[aria-pressed="false"] { opacity: .5; }
-button:focus-visible, select:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgba(34, 211, 238, .12);
+}
 
-.notif { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; padding: 6px 6px 6px 10px; border-radius: 12px;
-  background: rgba(24, 27, 40, .92); border: 1px solid var(--edge); border-left: 3px solid var(--accent);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .4); opacity: 0; transform: translateY(-6px) scale(.98); transition: .2s; }
+.notif {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px 9px;
+  padding: 8px 8px 8px 12px;
+  border-radius: 14px;
+  background: rgba(17, 22, 33, .96);
+  border: 1px solid var(--edge-strong);
+  border-left: 3px solid var(--accent);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .42);
+  opacity: 0;
+  transform: translateY(-7px) scale(.985);
+  transition: opacity .2s ease, transform .2s ease;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
 /* ---------- Notifications (sous les boutons, au-dessus de la signature) ---------- */
-#notifs { display: flex; flex-direction: column; gap: 6px; }
-#notifs:empty { display: none; }
+/* Un espace fixe est réservé : les notifications apparaissent sans déplacer les autres éléments */
+#notifs {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 62px;
+  flex: 0 0 auto;
+}
+/* L'espace réservé reste visible même sans notification : pas de display:none */
+#notifs:empty { display: flex; }
 /* Test plein écran : les notifications repassent en haut de l'écran */
 .app:has(.tpane.open.fullscreen) #notifs { position: fixed; z-index: 100; top: max(10px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%);
   width: min(94vw, 540px); }
 .notif.in { opacity: 1; transform: none; }
 .notif.ok { border-left-color: var(--ok); } .notif.warn { border-left-color: var(--warn); } .notif.err { border-left-color: var(--err); }
-.nmsg { flex: 1 1 120px; font-size: 13px; line-height: 1.25; word-break: break-word; }
+.nmsg {
+  flex: 1 1 120px;
+  font-size: 13px;
+  line-height: 1.35;
+  word-break: break-word;
+}
 .nact { display: flex; gap: 6px; flex-wrap: wrap; }
 .nact button { height: 26px; padding: 0 9px; border-radius: 8px; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer;
   color: var(--text); background: rgba(255, 255, 255, .12); border: 1px solid var(--edge); }
 .nx { width: 24px; height: 24px; border: 0; border-radius: 50%; background: transparent; color: var(--dim); font-size: 16px; line-height: 1; cursor: pointer; }
 
-/* ---------- Feuilles (Avancé, bloc, test) ---------- */
-.ov { position: fixed; inset: 0; z-index: 50; display: none; align-items: flex-end; justify-content: center;
-  background: rgba(4, 5, 10, .55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.ov {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(2, 5, 10, .68);
+  -webkit-backdrop-filter: blur(12px) saturate(115%);
+  backdrop-filter: blur(12px) saturate(115%);
+}
 .ov.open { display: flex; }
-.panel { width: 100%; max-width: 560px; max-height: 94vh; max-height: 94dvh; display: flex; flex-direction: column;
-  border-radius: 26px 26px 0 0; background: rgba(14, 17, 25, .82); border: 1px solid var(--edge); border-bottom: 0;
-  -webkit-backdrop-filter: blur(26px) saturate(160%); backdrop-filter: blur(26px) saturate(160%);
-  box-shadow: 0 -10px 50px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .12);
-  padding-bottom: env(safe-area-inset-bottom); animation: rise .22s ease-out; }
+.panel {
+  width: 100%;
+  max-width: 560px;
+  max-height: 94vh;
+  max-height: 94dvh;
+  display: flex;
+  flex-direction: column;
+  border-radius: 26px 26px 0 0;
+  background:
+    linear-gradient(155deg, rgba(26, 35, 50, .96), rgba(9, 13, 21, .97)),
+    var(--glass);
+  border: 1px solid var(--edge-strong);
+  border-bottom: 0;
+  -webkit-backdrop-filter: blur(28px) saturate(165%);
+  backdrop-filter: blur(28px) saturate(165%);
+  box-shadow:
+    0 -14px 54px rgba(0, 0, 0, .52),
+    inset 0 1px 0 rgba(255, 255, 255, .12);
+  padding-bottom: env(safe-area-inset-bottom);
+  animation: rise .22s ease-out;
+}
 @keyframes rise { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
-.ph { display: flex; align-items: center; gap: 8px; padding: 14px 14px 8px 18px; }
-.ph h2 { flex: 1; margin: 0; font-size: 16px; word-break: break-all; }
-.pb { overflow: auto; padding: 4px 12px 14px; -webkit-overflow-scrolling: touch; }
+.ph {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 16px 15px 9px 19px;
+}
+.ph h2 {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .1px;
+  word-break: break-all;
+}
+.pb {
+  overflow: auto;
+  padding: 5px 13px 16px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: rgba(145, 160, 180, .3) transparent;
+}
 
-.acc { margin: 8px 0; border: 1px solid var(--edge); border-radius: 16px; background: rgba(255, 255, 255, .05); }
-.acc > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; font-weight: 600; }
+.acc {
+  margin: 9px 0;
+  border: 1px solid var(--edge);
+  border-radius: 17px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, .055),
+    rgba(255, 255, 255, .018)
+  );
+  box-shadow: 0 5px 16px rgba(0, 0, 0, .12);
+  overflow: hidden;
+}
+.acc > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 9px 16px;
+  font-weight: 650;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .18s ease;
+}
 .acc > summary::-webkit-details-marker { display: none; }
-.acc > summary::after { content: "▾"; color: var(--dim); }
-.acc[open] > summary::after { content: "▴"; }
+.acc > summary::after {
+  content: "▾";
+  color: var(--dim);
+  transition: color .18s ease, transform .18s ease;
+}
+.acc[open] > summary::after {
+  content: "▴";
+  color: var(--accent);
+}
 .acc > .in { padding: 0 12px 12px; }
 
-.row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 0;
+}
 .row > * { flex: 1 1 auto; }
-.ta { width: 100%; height: 30vh; min-height: 150px; resize: vertical; font: 12.5px/1.5 var(--mono); color: var(--text); background: rgba(0, 0, 0, .28);
-  border: 1px solid var(--edge); border-radius: 12px; padding: 10px; white-space: pre; overflow: auto; }
-input[type=search] { width: 100%; height: 44px; border-radius: 12px; border: 1px solid var(--edge); background: rgba(0, 0, 0, .25); color: var(--text); padding: 0 14px; font: inherit; }
+.ta {
+  width: 100%;
+  height: 30vh;
+  min-height: 150px;
+  resize: vertical;
+  font: 12.5px/1.55 var(--mono);
+  color: var(--text);
+  background: linear-gradient(145deg, rgba(0, 0, 0, .34), rgba(0, 0, 0, .2));
+  border: 1px solid var(--edge);
+  border-radius: 14px;
+  padding: 12px;
+  white-space: pre;
+  overflow: auto;
+  scrollbar-color: rgba(145, 160, 180, .3) transparent;
+}
+input[type=search] {
+  width: 100%;
+  height: 46px;
+  border-radius: 13px;
+  border: 1px solid var(--edge);
+  background: rgba(0, 0, 0, .25);
+  color: var(--text);
+  padding: 0 14px;
+  font: inherit;
+  transition: border-color .18s, box-shadow .18s;
+}
 label.chk { display: inline-flex; align-items: center; gap: 8px; color: var(--dim); font-size: 14px; flex: 0 0 auto; }
 label.chk input { width: 18px; height: 18px; }
-.note { background: rgba(0, 0, 0, .22); border: 1px solid var(--edge); border-radius: 12px; padding: 9px 12px; color: var(--dim); font-size: 13px; margin: 8px 0; }
+.note {
+  background: rgba(0, 0, 0, .22);
+  border: 1px solid var(--edge);
+  border-radius: 13px;
+  padding: 10px 13px;
+  color: var(--dim);
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 9px 0;
+}
 .note.warn { border-color: var(--warn); color: var(--warn); } .note.err { border-color: var(--err); color: var(--err); } .note.okk { border-color: var(--ok); color: var(--ok); }
 .status { color: var(--dim); font-size: 13px; margin: 8px 2px; }
 /* Boîte de dialogue interne (remplace prompt / confirm) : centrée, au-dessus des autres feuilles */
@@ -171,7 +609,14 @@ label.chk input { width: 18px; height: 18px; }
 #ask-input { width: 100%; height: 44px; margin-top: 4px; border-radius: 12px; border: 1px solid var(--edge); background: rgba(0, 0, 0, .25); color: var(--text); padding: 0 14px; font: inherit; }
 .sm.danger { background: rgba(255, 107, 122, .20); border-color: rgba(255, 107, 122, .55); color: #ffc4c4; }
 
-.card { background: rgba(255, 255, 255, .06); border: 1px solid var(--edge); border-radius: 14px; padding: 10px 12px; margin: 8px 0; }
+.card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, .065), rgba(255, 255, 255, .025));
+  border: 1px solid var(--edge);
+  border-radius: 15px;
+  padding: 11px 13px;
+  margin: 8px 0;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .16);
+}
 .card .nm { font: 600 13px var(--mono); word-break: break-all; }
 .card .meta2 { color: var(--dim); font-size: 12px; margin: 2px 0 8px; }
 .pick { display: flex; align-items: flex-start; gap: 8px; cursor: pointer; }
@@ -183,6 +628,23 @@ label.chk input { width: 18px; height: 18px; }
   color: var(--accent); font: inherit; text-align: center; cursor: pointer; }
 .chipc { display: inline-block; font: 11px var(--mono); padding: 1px 7px; border-radius: 99px; background: rgba(255, 255, 255, .08); border: 1px solid var(--edge); margin-right: 6px; color: var(--dim); }
 .chipc.js { color: #f7d774; } .chipc.css { color: #7fd1ff; } .chipc.html { color: #ff9b7a; }
+.chipc.act { color: #bdf4fc; background: rgba(34, 211, 238, .15); border-color: rgba(34, 211, 238, .5); }
+.chipc.loc { color: #c2f5e0; border-color: rgba(52, 211, 153, .42); }
+.chipc.cld { color: #7fd1ff; border-color: rgba(127, 209, 255, .45); }
+.chipc.warn { color: #fde8b0; background: rgba(251, 191, 36, .14); border-color: rgba(251, 191, 36, .5); }
+.chipc.red { color: #ffc4c4; background: rgba(255, 107, 122, .16); border-color: rgba(255, 107, 122, .5); }
+/* Icône nuage : état de la synchronisation */
+#b-cloud.cs-ok { color: var(--ok); }
+#b-cloud.cs-pend { color: var(--warn); }
+#b-cloud.cs-busy { color: var(--accent); animation: cpulse 1s ease-in-out infinite; }
+#b-cloud.cs-conf { color: #ff9b7a; }
+#b-cloud.cs-err { color: var(--err); }
+@keyframes cpulse { 50% { opacity: .35; } }
+/* Écran de conflit : au-dessus des feuilles, sous les boîtes de dialogue internes */
+#conflictdlg { align-items: center; padding: 16px; z-index: 70; }
+#conflictdlg .panel { max-width: 520px; border-radius: 22px; border-bottom: 1px solid var(--edge); padding-bottom: 0; }
+#conflict-diff { max-height: 34vh; overflow: auto; border: 1px solid var(--edge); border-radius: 12px; margin: 8px 0; }
+#conflict-diff .diff { border-top: 0; }
 /* Modale « Choisir un projet » : cartes cliquables, projet actif mis en valeur */
 .psel-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
 .psel-item { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 14px;
@@ -196,24 +658,421 @@ label.chk input { width: 18px; height: 18px; }
 .psel-badge { flex: 0 0 auto; font: 11px var(--mono); padding: 2px 8px; border-radius: 99px;
   color: #bdf4fc; background: rgba(34, 211, 238, .18); border: 1px solid rgba(34, 211, 238, .45); }
 .acts { display: flex; gap: 6px; flex-wrap: wrap; }
-.sm { height: 38px; padding: 0 13px; border-radius: 11px; font-size: 13px; font-weight: 600; }
+.sm {
+  min-height: 38px;
+  padding: 0 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 620;
+}
 .sm.primary { background: var(--accent); color: #021014; border-color: rgba(255, 255, 255, .25); }
 .sm.ok { background: rgba(52, 211, 153, .20); border-color: rgba(52, 211, 153, .5); }
-/* Raccourcis carrés (Avancé › Outils) : taille flexible, toujours sur une seule ligne */
-.quick { display: flex; flex-wrap: nowrap; gap: 8px; margin: 4px 0 10px; }
-.qb { flex: 1 1 0; min-width: 0; height: 62px; padding: 0 2px; border-radius: 14px; font: inherit; font-size: 11px; line-height: 1.15;
-  color: var(--text); background: var(--glass2); border: 1px solid var(--edge);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .10), 0 6px 18px rgba(0, 0, 0, .40);
-  display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
-  text-align: center; cursor: pointer; transition: transform .09s ease, border-color .15s, background .15s;
-  -webkit-user-select: none; user-select: none; touch-action: manipulation; overflow: hidden; }
+/* Raccourcis carrés : tailles homogènes et alignement stable */
+.quick {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin: 4px 0 10px;
+}
+.qb {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 64px;
+  padding: 0 3px;
+  border-radius: 15px;
+  font: inherit;
+  font-size: 11px;
+  line-height: 1.15;
+  color: var(--text);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .085), rgba(255, 255, 255, .03));
+  border: 1px solid var(--edge);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .09),
+    0 6px 17px rgba(0, 0, 0, .26);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform .12s ease, border-color .18s, background .18s, box-shadow .18s;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  overflow: hidden;
+}
 .qb:active { transform: translateY(1px) scale(.96); background: rgba(255, 255, 255, .15);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 0 0 1px rgba(34, 211, 238, .55), 0 0 18px rgba(34, 211, 238, .28); }
 .qb .ic { width: 18px; height: 18px; }
 .qb.cyan { background: rgba(34, 211, 238, .13); border-color: rgba(34, 211, 238, .45); color: #bdf4fc; }
+.qb.red { background: rgba(255, 107, 122, .13); border-color: rgba(255, 107, 122, .45); color: #ffc4c4; }
 .qb.green { background: rgba(52, 211, 153, .13); border-color: rgba(52, 211, 153, .42); color: #c2f5e0; }
 .qb.warn { background: rgba(251, 191, 36, .13); border-color: rgba(251, 191, 36, .45); color: #fde8b0; }
 .empty { color: var(--dim); text-align: center; padding: 26px 10px; font-size: 14px; }
+/* ---------- Avancé : sections, tuiles, interrupteurs, lignes compactes ---------- */
+.acc > summary .ic { width: 20px; height: 20px; flex: none; color: var(--accent); }
+.acc > summary .st { flex: 1; min-width: 0; }
+.cnt { flex: none; font: 11px var(--mono); padding: 1px 8px; border-radius: 99px; color: #bdf4fc; background: rgba(34, 211, 238, .13); border: 1px solid rgba(34, 211, 238, .4); }
+.cnt:empty { display: none; }
+.acc[open] {
+  border-color: rgba(34, 211, 238, .34);
+}
+.tl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.tl-grid.c3 { grid-template-columns: repeat(3, 1fr); }
+.tl {
+  min-width: 0;
+  min-height: 52px;
+  padding: 10px 12px;
+  border: 1px solid rgba(190, 205, 216, .2);
+  border-radius: 15px;
+  color: var(--text, #edf1f4);
+  background-color: #1a2027;
+  background-image: linear-gradient(
+    145deg,
+    rgba(220, 230, 238, .055),
+    rgba(220, 230, 238, .02)
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .075),
+    0 5px 15px rgba(0, 0, 0, .25);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 620;
+  line-height: 1.2;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition:
+    transform .12s ease,
+    border-color .18s,
+    background-color .18s,
+    box-shadow .18s;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tl:focus-visible {
+  outline: 2px solid var(--accent, #8bb8c0);
+  outline-offset: 3px;
+  border-color: var(--accent, #8bb8c0);
+  box-shadow:
+    0 0 0 5px rgba(139, 184, 192, .13),
+    0 5px 15px rgba(0, 0, 0, .25);
+}
+
+.tl:active {
+  transform: scale(.97);
+  border-color: var(--accent, #8bb8c0);
+  background-color: #252e34;
+  box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, .3),
+    0 0 0 1px rgba(139, 184, 192, .2);
+}
+.tl .ic { width: 18px; height: 18px; flex: none; }
+.tl:active { transform: translateY(1px) scale(.97); background: rgba(255, 255, 255, .15); box-shadow: 0 0 0 1px rgba(34, 211, 238, .55), 0 0 16px rgba(34, 211, 238, .25); }
+.tl.cyan { background: rgba(34, 211, 238, .13); border-color: rgba(34, 211, 238, .45); color: #bdf4fc; }
+.tl.green { background: rgba(52, 211, 153, .13); border-color: rgba(52, 211, 153, .42); color: #c2f5e0; }
+.tl.warn { background: rgba(251, 191, 36, .13); border-color: rgba(251, 191, 36, .45); color: #fde8b0; }
+.tl.primary { background: var(--accent); border-color: rgba(255, 255, 255, .28); color: #021014;
+  box-shadow: 0 0 18px rgba(34, 211, 238, .30), inset 0 1px 0 rgba(255, 255, 255, .40); }
+.tl-grid.c3 .tl { flex-direction: column; gap: 4px; min-height: 60px; padding: 6px 4px; font-size: 12px; }
+.sec { margin: 16px 2px 8px; font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; color: var(--dim); }
+/* Interrupteurs : la case à cocher d'origine (mêmes id) est habillée en switch */
+.sw { display: flex; align-items: center; gap: 10px; min-height: 50px; padding: 6px 2px; border-top: 1px solid rgba(255, 255, 255, .06);
+  font-size: 13.5px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.sec + .sw { border-top: 0; }
+.sw-k { width: 30px; height: 30px; flex: none; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700;
+  color: #bdf4fc; background: rgba(34, 211, 238, .13); border: 1px solid rgba(34, 211, 238, .40); }
+.sw-t { flex: 1; min-width: 0; line-height: 1.3; }
+.sw input { --w: 46px; --h: 28px; --k: 22px; -webkit-appearance: none; appearance: none; flex: none; position: relative; width: var(--w); height: var(--h); margin: 0;
+  border-radius: 99px; background: rgba(255, 255, 255, .12); border: 1px solid var(--edge); cursor: pointer; transition: background .15s, border-color .15s; }
+.sw input::after { content: ""; position: absolute; top: 2px; left: 2px; width: var(--k); height: var(--k); border-radius: 50%; background: #cfd6e4;
+  transition: transform .15s, background .15s; }
+.sw input:checked { background: rgba(34, 211, 238, .30); border-color: rgba(34, 211, 238, .60); }
+.sw input:checked::after { transform: translateX(calc(var(--w) - var(--k) - 6px)); background: var(--accent); }
+.sw.mini { flex: 1 1 auto; min-height: 36px; padding: 0 4px; border-top: 0; font-size: 13px; }
+.sw.mini input { --w: 38px; --h: 22px; --k: 16px; }
+.btools { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+.btools .sm { flex: none; height: 36px; padding: 0 12px; font-size: 12.5px; }
+/* Bouton carré à icône (actions des lignes) */
+.ib { width: 34px; height: 34px; padding: 0; flex: none; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center;
+  font: inherit; color: var(--text); background: var(--glass2); border: 1px solid var(--edge); cursor: pointer;
+  transition: transform .09s ease, border-color .15s, background .15s;
+  -webkit-user-select: none; user-select: none; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.ib .ic { width: 16px; height: 16px; }
+.ib:active { transform: scale(.93); border-color: rgba(34, 211, 238, .55); background: rgba(255, 255, 255, .15); }
+.bk {
+  margin: 7px 0;
+  padding: 9px 9px 9px 11px;
+  border: 1px solid var(--edge);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .018));
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .13);
+}
+.bk.nest { border-left: 2px solid rgba(34, 211, 238, .50); }
+.bk-top { display: flex; align-items: flex-start; gap: 2px; }
+.bk-top .pick { flex: 1; min-width: 0; padding: 3px 0; }
+.bk-nm { font: 600 12.5px/1.35 var(--mono); word-break: break-all; }
+.bk-bot { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
+.bk-info { flex: 1; min-width: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 2px 4px; color: var(--dim); font-size: 11.5px; }
+.bk-info .chipc { margin-right: 0; }
+.bk-bot .acts, .hs .acts { flex: none; flex-wrap: nowrap; }
+/* Barre d'envoi des blocs cochés : collée en bas de la feuille */
+.selbar { position: sticky; bottom: 0; z-index: 3; display: flex; gap: 8px; margin-top: 8px; padding: 8px; border-radius: 14px;
+  background: rgba(14, 17, 25, .92); border: 1px solid rgba(34, 211, 238, .40);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 -6px 18px rgba(0, 0, 0, .40); }
+.selbar[hidden] { display: none; }
+.selbar .sm { height: 40px; }
+.hs {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 7px 0;
+  padding: 9px 9px 9px 13px;
+  border: 1px solid var(--edge);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .018));
+}
+.hs-b { flex: 1; min-width: 0; }
+.hs-nm { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hs-m { margin-top: 2px; color: var(--dim); font-size: 11.5px; }
+.hs .sm { height: 34px; padding: 0 12px; }
+/* ---------- Badges « logo seul » des projets ---------- */
+.bdgs { display: inline-flex; gap: 4px; flex: none; margin-left: auto; }
+.bdg { width: 22px; height: 22px; flex: none; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  color: var(--text); background: rgba(255, 255, 255, .08); border: 1px solid var(--edge); }
+.bdg .ic { width: 13px; height: 13px; stroke-width: 2.2; }
+.bdg.bd-act { color: #021014; background: var(--accent); border-color: rgba(255, 255, 255, .3); box-shadow: 0 0 8px rgba(34, 211, 238, .45); }
+.bdg.bd-cld { color: #7fd1ff; background: rgba(127, 209, 255, .14); border-color: rgba(127, 209, 255, .45); }
+.bdg.bd-ok { color: #c2f5e0; background: rgba(52, 211, 153, .16); border-color: rgba(52, 211, 153, .5); }
+.bdg.bd-pend { color: #fde8b0; background: rgba(251, 191, 36, .16); border-color: rgba(251, 191, 36, .5); }
+.bdg.bd-new { color: #d8ccff; background: rgba(167, 139, 250, .16); border-color: rgba(167, 139, 250, .5); }
+.bdg.bd-conf, .bdg.bd-bin { color: #ffc4c4; background: rgba(255, 107, 122, .16); border-color: rgba(255, 107, 122, .55); }
+.bdg.lg { width: 34px; height: 34px; }
+.bdg.lg .ic { width: 18px; height: 18px; }
+/* Petit bouton « ? » de la modale Projets */
+.pj-help { flex: none; width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 1px solid var(--edge); background: var(--glass);
+  color: var(--accent); font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+.pj-help:active { transform: scale(.94); background: rgba(34, 211, 238, .15); }
+/* Légende des icônes : réutilise .ov / .panel, au-dessus des autres feuilles */
+#legend { align-items: center; padding: 16px; z-index: 90; }
+#legend .panel { max-width: 460px; border-radius: 22px; border-bottom: 1px solid var(--edge); padding-bottom: 0; }
+.split-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin: 8px 0 10px;
+}
+.split-counts button {
+  height: 32px;
+  min-width: 42px;
+  padding: 0 10px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+  border: 1px solid var(--edge);
+  cursor: pointer;
+  transition: transform .12s, border-color .18s, background .18s, color .18s, box-shadow .18s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.split-counts button:active { transform: scale(.94); }
+.split-counts button.on {
+  background: rgba(34, 211, 238, .18);
+  border-color: rgba(34, 211, 238, .55);
+  color: #bdf4fc;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09), 0 0 14px rgba(34, 211, 238, .18);
+}
+.split-counts button:disabled { opacity: .3; cursor: not-allowed; }
+.split-q-wrap {
+  margin: 2px 0 10px;
+}
+.split-info {
+  font-size: 12.5px;
+  line-height: 1.35;
+  text-align: center;
+  color: var(--dim);
+  min-height: 18px;
+  margin: 0 0 10px;
+}
+.split-info b { color: var(--accent); font-weight: 700; }
+.split-info.warn { color: var(--warn); }
+.split-info.warn b { color: var(--warn); }
+.split-parts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+.split-parts button {
+  position: relative;
+  min-height: 58px;
+  padding: 6px;
+  border-radius: 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .07), rgba(255, 255, 255, .025));
+  border: 1px solid var(--edge);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  cursor: pointer;
+  transition: transform .12s, border-color .18s, background .18s, box-shadow .18s, color .18s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.split-parts button:active {
+  transform: scale(.96);
+  background: rgba(255, 255, 255, .15);
+  border-color: rgba(34, 211, 238, .55);
+}
+.split-parts button .sn { font-size: 17px; font-weight: 800; color: var(--accent); }
+.split-parts button .sm2 { font-size: 11px; color: var(--dim); font-weight: 500; }
+.split-parts button.hit {
+  background: rgba(34, 211, 238, .20);
+  border-color: rgba(34, 211, 238, .62);
+  color: #bdf4fc;
+  box-shadow: 0 0 14px rgba(34, 211, 238, .25), inset 0 1px 0 rgba(255, 255, 255, .10);
+}
+.split-parts button.hit .sn { color: #bdf4fc; }
+.split-parts.searching button:not(.hit) {
+  opacity: .38;
+}
+.split-parts button.copied {
+  background: rgba(52, 211, 153, .20);
+  border-color: rgba(52, 211, 153, .60);
+  color: #c2f5e0;
+  box-shadow: 0 0 14px rgba(52, 211, 153, .25), inset 0 1px 0 rgba(255, 255, 255, .10);
+}
+.split-parts button.copied .sn { color: var(--ok); }
+.split-parts button.copied::after {
+  content: "✓";
+  position: absolute;
+  top: 3px;
+  right: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ok);
+}
+#splitdlg {
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 90;
+}
+#splitdlg .panel {
+  max-width: 460px;
+  max-height: 88vh;
+  max-height: 88dvh;
+  border-radius: 22px;
+  border-bottom: 1px solid var(--edge);
+  padding-bottom: 0;
+  animation: popin .2s ease-out;
+}
+@keyframes popin {
+  from { transform: scale(.96); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+/* ---------- Modale Projets : liste compacte mobile ---------- */
+.pj-head { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; }
+.pj-sum { flex: 1; min-width: 0; color: var(--dim); font-size: 12.5px; }
+.pj {
+  margin: 7px 0;
+  border: 1px solid var(--edge);
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, .065),
+    rgba(255, 255, 255, .025)
+  );
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+  overflow: hidden;
+  transition:
+    border-color .18s,
+    box-shadow .18s,
+    background .18s;
+}
+.pj.on {
+  border-color: rgba(34, 211, 238, .48);
+  background: linear-gradient(145deg, rgba(34, 211, 238, .1), rgba(255, 255, 255, .025));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .09),
+    0 0 18px rgba(34, 211, 238, .12);
+}
+.pj-row { display: flex; align-items: stretch; }
+.pj-main {
+  flex: 1;
+  min-width: 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 7px 9px 14px;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .16s ease;
+}
+.pj-main:active { background: rgba(255, 255, 255, .07); }
+.pj-main:disabled { opacity: .5; }
+/* Pastille d'état : gris = appareil seul, vert = synchronisé, orange = à sauvegarder, bleu = mise à jour / à récupérer, rouge = conflit */
+.pj-dot { flex: 0 0 10px; width: 10px; height: 10px; border-radius: 50%; background: var(--dim); opacity: .7; }
+.pj-dot.s-ok { background: var(--ok); opacity: 1; box-shadow: 0 0 8px rgba(52, 211, 153, .6); }
+.pj-dot.s-pend { background: var(--warn); opacity: 1; box-shadow: 0 0 8px rgba(251, 191, 36, .6); }
+.pj-dot.s-conf { background: var(--err); opacity: 1; box-shadow: 0 0 8px rgba(255, 107, 122, .6); }
+.pj-dot.s-new { background: #7fd1ff; opacity: 1; box-shadow: 0 0 8px rgba(127, 209, 255, .6); }
+.pj-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.pj-nm { display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 14.5px; min-width: 0; }
+.pj-nm .chipc { flex: none; margin: 0; white-space: nowrap; }
+.pj-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pj-sub { color: var(--dim); font-size: 11.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pj-more {
+  flex: 0 0 52px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-left: 1px solid rgba(255, 255, 255, .075);
+  background: transparent;
+  color: var(--dim);
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .16s ease, background .16s ease;
+}
+.pj-more[aria-expanded="true"] { color: var(--accent); background: rgba(34, 211, 238, .10); }
+.pj-conf { display: flex; padding: 0 10px 8px; }
+.pj-acts { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 10px 10px; border-top: 1px solid rgba(255, 255, 255, .07); }
+.pj-acts[hidden] { display: none; }
+.pj-acts .sm { flex: 1 1 40%; height: 36px; padding: 0 10px; font-size: 12.5px; }
+.pj-ver:not(:empty) { padding: 0 12px 8px; border-top: 1px solid rgba(255, 255, 255, .07); }
+.vr { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid rgba(255, 255, 255, .06); font-size: 12.5px; }
+.vr:first-child { border-top: 0; }
+.vr-t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vr-t span { color: var(--dim); }
+.vr .sm { height: 30px; padding: 0 10px; font-size: 12px; }
 
 .log details { background: rgba(255, 255, 255, .05); border: 1px solid var(--edge); border-radius: 12px; margin: 6px 0; }
 .log summary { padding: 9px 12px; cursor: pointer; font-size: 14px; word-break: break-word; }
@@ -233,7 +1092,13 @@ label.chk input { width: 18px; height: 18px; }
 .tpane.open.fullscreen .ph h2 { display: none; }
 .tpane.open.fullscreen .ph .iconbtn { opacity: .28; height: 34px; min-width: 34px; padding: 0 8px; border-radius: 50%; }
 .tpane.open.fullscreen .ph #t-fs { display: none; }
-.tpane.open.fullscreen #t-exit { display: block; }
+/* Caché hors plein écran ; en plein écran, il reste dans le flux du .ph à côté du bouton fermer */
+#t-exit {
+  display: none;
+}
+.tpane.open.fullscreen #t-exit {
+  display: inline-flex;
+}
 .tpane.open.fullscreen .pb { flex: 1; min-height: 0; display: flex; flex-direction: column; }
 .tpane.open.fullscreen #tframe { flex: 1; height: auto; min-height: 0; }
 /* Test immersif : plein écran sans aucune bordure (comme dans la PWA réelle) */
@@ -266,19 +1131,19 @@ label.chk input { width: 18px; height: 18px; }
 <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./splash-750x1334.png">
 <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="./splash-640x1136.png">
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<meta property="og:title" content="Bcode backup">
-<meta name="twitter:title" content="Bcode backup">
-<meta name="application-name" content="Bcode backup">
-<meta name="apple-mobile-web-app-title" content="Bcode backup">
-<meta name="description" content="Ancienne version de Bcode">
-<meta property="og:description" content="Ancienne version de Bcode">
-<meta name="twitter:description" content="Ancienne version de Bcode">
+<meta property="og:title" content="B5">
+<meta name="twitter:title" content="B5">
+<meta name="application-name" content="B5">
+<meta name="apple-mobile-web-app-title" content="B5">
+<meta name="description" content="Koljhgxw">
+<meta property="og:description" content="Koljhgxw">
+<meta name="twitter:description" content="Koljhgxw">
 <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="./icon.png">
-<meta property="og:image" content="https://mekeirish.github.io/Bcode-backup/icon.png">
-<meta name="twitter:image" content="https://mekeirish.github.io/Bcode-backup/icon.png">
+<meta property="og:image" content="https://mekeirish.github.io/B5/icon.png">
+<meta name="twitter:image" content="https://mekeirish.github.io/B5/icon.png">
 <meta name="twitter:card" content="summary">
-<meta property="og:url" content="https://mekeirish.github.io/Bcode-backup/">
+<meta property="og:url" content="https://mekeirish.github.io/B5/">
 </head>
 <body>
 
@@ -297,36 +1162,50 @@ label.chk input { width: 18px; height: 18px; }
     <symbol id="i-sliders" viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
     <symbol id="i-maximize" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></symbol>
+<symbol id="i-cloud" viewBox="0 0 24 24"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M5 20h14"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></symbol>
+<symbol id="i-goto" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></symbol>
+<symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+<symbol id="i-swap" viewBox="0 0 24 24"><path d="M4 8h13"/><path d="m14 5 3 3-3 3"/><path d="M20 16H7"/><path d="m10 13-3 3 3 3"/></symbol>
   </defs>
 </svg>
 
 <div class="app">
-  <header class="glass bar">
-    <div class="brand">Bcode</div>
-    <button class="iconbtn" id="b-undo-top" aria-label="Annuler la dernière action"><svg class="ic"><use href="#i-undo"/></svg></button>
-    <button class="iconbtn" id="b-redo-top" aria-label="Rétablir" disabled><svg class="ic"><use href="#i-redo"/></svg></button>
-    <button class="iconbtn" id="b-adv"><svg class="ic"><use href="#i-sliders"/></svg>Avancé</button>
-  </header>
-<div class="meta">
-  <button class="glass lvl" id="b-proj-open" type="button" style="text-align:left;cursor:pointer">Projet : <b id="proj-cur">—</b></button>
-  <button class="iconbtn" id="b-proj-new" aria-label="Nouveau projet"><svg class="ic"><use href="#i-plus"/></svg></button>
-  <button class="iconbtn" id="b-hl" aria-label="Coloration du code" aria-pressed="true"><svg class="ic"><use href="#i-braces"/></svg></button>
-</div>
+<header class="glass bar">
+  <div class="brand">Bcode</div>
+  <button class="iconbtn" id="b-undo-top" aria-label="Annuler la dernière action"><svg class="ic"><use href="#i-undo"/></svg></button>
+  <button class="iconbtn" id="b-redo-top" aria-label="Rétablir" disabled><svg class="ic"><use href="#i-redo"/></svg></button>
+  <button class="iconbtn" id="b-adv"><svg class="ic"><use href="#i-sliders"/></svg>Avancé</button>
+  <button class="iconbtn" id="b-cloud" title="Cloud GitHub (non connecté)" aria-label="Cloud GitHub"><svg class="ic"><use href="#i-cloud"/></svg></button>
+</header>
 
 <div class="meta">
   <div class="glass chip" id="stats"></div>
-  <button class="glass lvl" id="b-level-open" type="button" style="text-align:left;cursor:pointer">Découpage : <b id="level-cur">2</b></button>
+<button class="glass lvl" id="b-level-open" type="button" style="text-align:left;cursor:pointer"><span id="level-lbl">Découpage : </span><b id="level-cur">2</b></button>
   <button class="iconbtn" id="b-clear" aria-label="Vider le code"><svg class="ic"><use href="#i-trash"/></svg></button>
 </div>
-  <div class="toggles">
-    <button class="tg" id="tg-snd" aria-pressed="false" title="Sons des boutons">♪</button>
-    <button class="tg" id="tg-vib" aria-pressed="false" title="Vibrations au toucher">≈</button>
-    <button class="tg" id="tg-autotest" aria-pressed="false" title="Tester après Appliquer">↻</button>
-    <button class="tg" id="tg-copyfinal" aria-pressed="false" title="Copier le code final en cliquant sur Tester">⧉</button>
-    <button class="tg" id="tg-autofs" aria-pressed="false" title="Test direct en plein écran">⛶</button>
-    <button class="tg help" id="tg-help" aria-label="Aide sur ces boutons">?</button>
-  </div>
+<div class="toggles">
+  <button class="tg" id="tg-snd" aria-pressed="false" title="Sons des boutons">♪</button>
+  <button class="tg" id="tg-vib" aria-pressed="false" title="Vibrations au toucher">≈</button>
+  <button class="tg" id="tg-autotest" aria-pressed="false" title="Tester après Appliquer">↻</button>
+  <button class="tg" id="tg-copyfinal" aria-pressed="false" title="Copier le code final en cliquant sur Tester">⧉</button>
+  <button class="tg" id="tg-autofs" aria-pressed="false" title="Test direct en plein écran">⛶</button>
+  <button class="tg" id="b-hl" aria-label="Coloration du code" aria-pressed="true" title="Coloration syntaxique"><svg class="ic" style="width:18px;height:18px;"><use href="#i-braces"/></svg></button>
+  <button class="tg help" id="tg-help" aria-label="Aide sur ces boutons">?</button>
+</div>
 
+<div class="proj-bar" id="proj-bar" title="Changer de projet">
+  <svg class="ic" style="width: 14px; height: 14px; opacity: 0.7;"><use href="#i-file"/></svg>
+  <span>Projet : <b id="proj-cur">—</b></span>
+</div>
   <section class="glass code">
 <pre id="hl" aria-hidden="true"><div id="hl-in"></div></pre>
     <textarea id="src" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off" placeholder="Collez votre code HTML ici…"></textarea>
@@ -340,6 +1219,7 @@ label.chk input { width: 18px; height: 18px; }
     <button class="btn hero" id="b-main"><svg class="ic"><use href="#i-zap"/></svg><span id="b-main-t">Analyser</span></button>
   </div>
 <div class="quick">
+<button class="qb red" id="qb-need" aria-label="Blocs demandés"><svg class="ic"><use href="#i-swap"/></svg>Dem.</button>
   <button class="qb cyan" id="qb-marked" aria-label="Copier le code balisé"><svg class="ic"><use href="#i-braces"/></svg>Bal</button>
   <button class="qb" id="qb-prompt" aria-label="Copier le prompt seul"><svg class="ic"><use href="#i-copy"/></svg>Prompt</button>
   <button class="qb cyan" id="qb-all" aria-label="Copier le prompt et le code balisé"><svg class="ic"><use href="#i-zap"/></svg>P+C</button>
@@ -357,7 +1237,7 @@ label.chk input { width: 18px; height: 18px; }
     <div class="ph">
       <h2>Test de l'appli</h2>
       <button class="iconbtn" id="t-fs" aria-label="Plein écran"><svg class="ic"><use href="#i-maximize"/></svg></button>
-      <button id="t-exit" aria-label="Quitter le plein écran"></button>
+<button class="iconbtn" id="t-exit" aria-label="Quitter le plein écran"><svg class="ic"><use href="#i-maximize"/></svg></button>
       <button class="iconbtn" id="t-x" aria-label="Fermer"><svg class="ic"><use href="#i-x"/></svg></button>
     </div>
     <div class="pb">
@@ -381,83 +1261,93 @@ label.chk input { width: 18px; height: 18px; }
     <div class="ph"><h2>Avancé</h2><button class="iconbtn" id="adv-close" aria-label="Fermer"><svg class="ic"><use href="#i-x"/></svg></button></div>
     <div class="pb">
 
-      <details class="acc" id="acc-resp" name="adv">
-        <summary>Réponse de l'IA</summary>
-        <div class="in">
-          <textarea id="resp" class="ta" spellcheck="false" autocapitalize="off" wrap="off" placeholder="Réponse de l'IA (blocs #BLOC … #FIN, #APRES, #AVANT, #SUPPRIMER)…"></textarea>
-          <div class="row">
-            <button class="sm" id="b-rpaste">Coller</button>
-            <button class="sm" id="b-radd">+ Ajouter</button>
-            <button class="sm" id="b-preview">Aperçu</button>
-            <button class="sm primary" id="b-apply">Appliquer</button>
-          </div>
-          <div id="result" class="log"></div>
-        </div>
-      </details>
+<details class="acc" id="acc-resp" name="adv">
+  <summary><svg class="ic"><use href="#i-paste"/></svg><span class="st">Réponse de l'IA</span></summary>
+  <div class="in">
+    <textarea id="resp" class="ta" spellcheck="false" autocapitalize="off" wrap="off" placeholder="Réponse de l'IA (blocs #BLOC … #FIN, #APRES, #AVANT, #SUPPRIMER)…"></textarea>
+    <div class="tl-grid c3" style="margin-top:8px">
+      <button class="tl" id="b-rpaste"><svg class="ic"><use href="#i-paste"/></svg>Coller</button>
+      <button class="tl" id="b-radd"><svg class="ic"><use href="#i-plus"/></svg>Ajouter</button>
+      <button class="tl" id="b-preview"><svg class="ic"><use href="#i-eye"/></svg>Aperçu</button>
+    </div>
+    <div class="tl-grid" style="grid-template-columns:1fr;margin-top:8px">
+      <button class="tl primary" id="b-apply"><svg class="ic"><use href="#i-check"/></svg>Appliquer</button>
+    </div>
+    <div id="result" class="log"></div>
+  </div>
+</details>
 
-      <details class="acc" id="acc-blocs" name="adv">
-        <summary>Blocs <span id="nb"></span></summary>
-        <div class="in">
-          <input type="search" id="q" placeholder="Rechercher un bloc…" autocomplete="off">
-          <div class="row"><label class="chk"><input type="checkbox" id="subs" checked> Afficher les sous-blocs</label></div>
-          <div class="row">
-            <button class="sm" id="b-fold-all">▸ Tout replier</button>
-            <button class="sm" id="b-unfold-all">▾ Tout déplier</button>
-          </div>
-          <div class="row">
-            <button class="sm primary" id="b-send-sel">Copier prompt + index + cochés</button>
-            <button class="sm" id="b-unpick">Tout décocher</button>
-          </div>
-          <div id="blist"></div>
-        </div>
-      </details>
+<details class="acc" id="acc-blocs" name="adv">
+  <summary><svg class="ic"><use href="#i-braces"/></svg><span class="st">Blocs</span><span class="cnt" id="nb"></span></summary>
+  <div class="in">
+    <input type="search" id="q" placeholder="Rechercher un bloc…" autocomplete="off">
+    <div class="btools">
+      <label class="sw mini"><input type="checkbox" id="subs" checked><span>Sous-blocs</span></label>
+      <button class="sm" id="b-fold-all" aria-label="Tout replier">▸ Replier</button>
+      <button class="sm" id="b-unfold-all" aria-label="Tout déplier">▾ Déplier</button>
+    </div>
+    <div id="blist"></div>
+    <div class="selbar" id="selbar" hidden>
+      <button class="sm primary" id="b-send-sel" style="flex:1" title="Copier prompt + index + blocs cochés">Prompt + index + cochés (<span id="pk-n">0</span>)</button>
+      <button class="sm" id="b-unpick">Décocher</button>
+    </div>
+  </div>
+</details>
 
-      <details class="acc" id="acc-hist" name="adv">
-        <summary>Historique</summary>
-        <div class="in"><div id="hlist"></div></div>
-      </details>
-      <details class="acc" id="acc-proj" name="adv">
-        <summary>Projets</summary>
-        <div class="in">
-          <div id="plist"></div>
-          <div class="row">
-            <button class="sm" id="b-export-all">⬇ Exporter tout (JSON)</button>
-            <button class="sm" id="b-import-all">⬆ Importer un export</button>
-          </div>
-          <input type="file" id="file-import" accept=".json,application/json" hidden>
-        </div>
-      </details>
+<details class="acc" id="acc-hist" name="adv">
+  <summary><svg class="ic"><use href="#i-clock"/></svg><span class="st">Historique</span><span class="cnt" id="hn"></span></summary>
+  <div class="in"><div id="hlist"></div></div>
+</details>
+<details class="acc" id="acc-proj" name="adv">
+  <summary><svg class="ic"><use href="#i-folder"/></svg><span class="st">Projets</span><span class="cnt" id="pn"></span></summary>
+  <div class="in">
+    <div class="row" style="margin-top:2px">
+      <button class="sm primary" id="adv-new-proj">+ Nouveau</button>
+      <button class="sm" id="adv-cloud">☁ Cloud &amp; versions</button>
+    </div>
+    <div id="plist"></div>
+    <div class="tl-grid" style="margin-top:10px">
+      <button class="tl" id="b-export-all"><svg class="ic"><use href="#i-download"/></svg>Exporter (JSON)</button>
+      <button class="tl" id="b-import-all"><svg class="ic"><use href="#i-upload"/></svg>Importer</button>
+    </div>
+    <input type="file" id="file-import" accept=".json,application/json" hidden>
+  </div>
+</details>
 
-      <details class="acc" id="acc-tools" name="adv">
-        <summary>Outils</summary>
-        <div class="in">
-          <div class="row">
-            <button class="sm ok" id="b-prompt">✦ Prompt seul</button>
-            <button class="sm ok" id="b-sync">↻ Synchroniser l'IA</button>
-            <button class="sm" id="b-remind">Rappel court</button>
-            <button class="sm" id="b-index">Index des blocs</button>
-            <button class="sm" id="b-copy-marked">Copier balisé</button>
-            <button class="sm" id="b-need">Blocs demandés</button>
-          </div>
-          <div class="row">
-            <button class="sm primary" id="b-share-all">📤 Code + prompt</button>
-            <button class="sm primary" id="b-share-sync">📤 Synchro</button>
-            <button class="sm primary" id="b-share-sel">📤 Blocs cochés</button>
-          </div>
-          <div class="row">
-            <button class="sm" id="b-open">Ouvrir un fichier</button>
-            <button class="sm" id="b-dl-clean">Télécharger propre</button>
-            <button class="sm" id="b-dl-marked">Télécharger balisé</button>
-            <button class="sm" id="b-strip">Retirer les marqueurs</button>
-          </div>
-          <div class="row"><label class="chk"><input type="checkbox" id="snd" checked> Sons discrets des boutons</label></div>
-          <div class="row"><label class="chk"><input type="checkbox" id="vib" checked> Vibrations au toucher (Android)</label></div>
-          <div class="row"><label class="chk"><input type="checkbox" id="autotest"> Tester automatiquement après « Appliquer »</label></div>
-          <div class="row"><label class="chk"><input type="checkbox" id="copyfinal"> Copier le code final en cliquant sur « Tester »</label></div>
-          <div class="row"><label class="chk"><input type="checkbox" id="autofs"> Lancer le test directement en plein écran</label></div>
-          <input type="file" id="file" accept=".html,.htm,.js,.css,.txt,.md" hidden>
-        </div>
-      </details>
+<details class="acc" id="acc-tools" name="adv">
+  <summary><svg class="ic"><use href="#i-wrench"/></svg><span class="st">Outils</span></summary>
+  <div class="in">
+    <div class="sec" style="margin-top:4px">Copier pour l'IA</div>
+    <div class="tl-grid">
+      <button class="tl green" id="b-prompt"><svg class="ic"><use href="#i-copy"/></svg>Prompt seul</button>
+      <button class="tl green" id="b-sync"><svg class="ic"><use href="#i-redo"/></svg>Synchroniser l'IA</button>
+      <button class="tl" id="b-remind"><svg class="ic"><use href="#i-copy"/></svg>Rappel court</button>
+      <button class="tl" id="b-index"><svg class="ic"><use href="#i-braces"/></svg>Index des blocs</button>
+      <button class="tl cyan" id="b-copy-marked"><svg class="ic"><use href="#i-braces"/></svg>Copier balisé</button>
+      <button class="tl" id="b-need"><svg class="ic"><use href="#i-paste"/></svg>Blocs demandés</button>
+    </div>
+    <div class="sec">Partager (feuille du téléphone)</div>
+    <div class="tl-grid c3">
+      <button class="tl cyan" id="b-share-all"><svg class="ic"><use href="#i-upload"/></svg>Code + prompt</button>
+      <button class="tl cyan" id="b-share-sync"><svg class="ic"><use href="#i-upload"/></svg>Synchro</button>
+      <button class="tl cyan" id="b-share-sel"><svg class="ic"><use href="#i-upload"/></svg>Blocs cochés</button>
+    </div>
+    <div class="sec">Fichiers</div>
+    <div class="tl-grid">
+      <button class="tl" id="b-open"><svg class="ic"><use href="#i-folder"/></svg>Ouvrir un fichier</button>
+      <button class="tl" id="b-dl-clean"><svg class="ic"><use href="#i-download"/></svg>Télécharger propre</button>
+      <button class="tl" id="b-dl-marked"><svg class="ic"><use href="#i-download"/></svg>Télécharger balisé</button>
+      <button class="tl warn" id="b-strip"><svg class="ic"><use href="#i-x"/></svg>Retirer les marqueurs</button>
+    </div>
+    <div class="sec">Réglages</div>
+    <label class="sw"><span class="sw-k">♪</span><span class="sw-t">Sons discrets des boutons</span><input type="checkbox" id="snd" checked></label>
+    <label class="sw"><span class="sw-k">≈</span><span class="sw-t">Vibrations au toucher (Android)</span><input type="checkbox" id="vib" checked></label>
+    <label class="sw"><span class="sw-k">↻</span><span class="sw-t">Tester automatiquement après « Appliquer »</span><input type="checkbox" id="autotest"></label>
+    <label class="sw"><span class="sw-k">⧉</span><span class="sw-t">Copier le code final en cliquant sur « Tester »</span><input type="checkbox" id="copyfinal"></label>
+    <label class="sw"><span class="sw-k">⛶</span><span class="sw-t">Lancer le test directement en plein écran</span><input type="checkbox" id="autofs"></label>
+    <input type="file" id="file" accept=".html,.htm,.js,.css,.txt,.md" hidden>
+  </div>
+</details>
 
     </div>
   </div>
@@ -502,6 +1392,37 @@ label.chk input { width: 18px; height: 18px; }
     </div>
   </div>
 </div>
+<div class="ov" id="splitdlg">
+  <div class="panel">
+    <div class="ph"><h2>Découper le code</h2><button class="iconbtn" id="splitdlg-x" aria-label="Fermer"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    <div class="pb">
+      <div class="note">La découpe respecte les blocs de premier niveau : aucun bloc n'est tronqué.</div>
+      <div class="sec" style="margin-top:6px">Nombre de parties</div>
+      <div id="split-counts" class="split-counts"></div>
+      <div class="split-q-wrap">
+        <input type="search" id="split-q" placeholder="Filtrer les parties par mot-clé…" autocomplete="off">
+      </div>
+      <div id="split-info" class="split-info"></div>
+      <div id="split-parts" class="split-parts"></div>
+    </div>
+  </div>
+</div>
+<div class="ov" id="legend">
+  <div class="panel">
+    <div class="ph"><h2>Icônes des projets</h2><button class="iconbtn" id="legend-x" aria-label="Fermer"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    <div class="pb">
+      <div class="hrow"><span class="bdg lg bd-act"><svg class="ic"><use href="#i-file"/></svg></span><div class="htxt"><b>Projet ouvert</b> — celui qui est affiché dans l'éditeur.</div></div>
+      <div class="hrow"><span class="bdg lg"><svg class="ic"><use href="#i-phone"/></svg></span><div class="htxt"><b>Sur cet appareil</b> — copie locale. Si c'est la seule icône de lieu, le projet n'est pas sur le Cloud.</div></div>
+      <div class="hrow"><span class="bdg lg bd-cld"><svg class="ic"><use href="#i-cloud"/></svg></span><div class="htxt"><b>Sur le Cloud</b> — une version est sauvegardée sur GitHub. Sans l'icône appareil, le projet n'est pas stocké ici.</div></div>
+      <div class="hrow"><span class="bdg lg bd-ok"><svg class="ic"><use href="#i-check"/></svg></span><div class="htxt"><b>Synchronisé</b> — l'appareil et le Cloud sont identiques.</div></div>
+      <div class="hrow"><span class="bdg lg bd-pend"><svg class="ic"><use href="#i-upload"/></svg></span><div class="htxt"><b>À sauvegarder</b> — modifié depuis la dernière sauvegarde Cloud (envoi automatique après 30 s sans frappe).</div></div>
+      <div class="hrow"><span class="bdg lg bd-new"><svg class="ic"><use href="#i-download"/></svg></span><div class="htxt"><b>À récupérer</b> — le projet, ou une version plus récente, est sur le Cloud. Touchez la ligne pour le récupérer et l'ouvrir.</div></div>
+      <div class="hrow"><span class="bdg lg bd-conf"><svg class="ic"><use href="#i-alert"/></svg></span><div class="htxt"><b>Conflit</b> — modifié ici ET sur le Cloud. Rien n'est écrasé : touchez « Résoudre le conflit ».</div></div>
+      <div class="hrow"><span class="bdg lg bd-bin"><svg class="ic"><use href="#i-trash"/></svg></span><div class="htxt"><b>Corbeille du Cloud</b> — « Restaurer » le récupère, « Supprimer » l'efface définitivement.</div></div>
+      <div class="note">Touchez un projet pour l'ouvrir. « ⋯ » ouvre les actions : versions, renommer, retirer, corbeille, supprimer partout.</div>
+    </div>
+  </div>
+</div>
 <div class="ov" id="projdlg">
   <div class="panel">
     <div class="ph"><h2>Projets</h2><button class="iconbtn" id="projdlg-x" aria-label="Fermer"><svg class="ic"><use href="#i-x"/></svg></button></div>
@@ -513,6 +1434,55 @@ label.chk input { width: 18px; height: 18px; }
         <button class="sm" id="projdlg-import">⬆ Importer un export</button>
       </div>
       <input type="file" id="file-import2" accept=".json,application/json" hidden>
+    </div>
+  </div>
+</div>
+<div class="ov" id="clouddlg">
+  <div class="panel">
+<div class="ph">
+  <h2>Projets</h2>
+  <button class="iconbtn" id="clouddlg-x" aria-label="Fermer"><svg class="ic"><use href="#i-x"/></svg></button>
+</div>
+    <div class="pb">
+      <div id="cloud-status" class="note">Non connecté.</div>
+
+<div id="cloud-token-box">
+  <div class="row">
+    <input type="password" id="cloud-token" placeholder="github_pat_…" autocomplete="off" spellcheck="false" style="flex:1 1 100%;height:44px;border-radius:12px;border:1px solid var(--edge);background:rgba(0,0,0,.25);color:var(--text);padding:0 14px;font:inherit">
+  </div>
+  <div class="row">
+    <button class="sm primary" id="cloud-connect">Se connecter</button>
+    <button class="sm" id="cloud-forget">Oublier le token</button>
+  </div>
+  <div class="note warn">
+    Token gardé uniquement dans ce navigateur : appareil de confiance seulement. Droits requis sur <b>mekeirish/Bcode-Projects</b> : Contents (lecture/écriture) + Metadata (lecture).
+  </div>
+</div>
+
+<div id="cloud-connected" style="display:none">
+  <div class="row">
+    <button class="sm primary" id="cloud-backup">⬆ Sauvegarder</button>
+    <button class="sm" id="cloud-pull">⬇ Mettre à jour</button>
+    <button class="sm" id="cloud-refresh" aria-label="Rafraîchir">↻</button>
+  </div>
+  <div class="row"><label class="chk"><input type="checkbox" id="cloud-auto" checked> Sauvegarde auto (30 s sans frappe)</label></div>
+  <div id="cloud-last-sync" class="status"></div>
+</div>
+<div id="cloud-projects"></div>
+    </div>
+  </div>
+</div>
+<div class="ov" id="conflictdlg">
+  <div class="panel">
+    <div class="ph"><h2 id="conflict-title">Conflit</h2><button class="iconbtn" id="conflictdlg-x" aria-label="Fermer"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    <div class="pb">
+      <div id="conflict-msg" class="note warn"></div>
+      <div id="conflict-diff"></div>
+      <div class="row">
+        <button class="sm primary" id="conflict-mine">Garder la mienne</button>
+        <button class="sm" id="conflict-cloud">Prendre le Cloud</button>
+        <button class="sm" id="conflict-both">Garder les deux</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1748,7 +2718,7 @@ const $ = id => document.getElementById(id);
 const STORE_KEY = 'blocs.v1';
 const MAX_HIST = 30;
 let hist = [];
-let dlgMode = null, dlgName = null, lastMarkErr = '';
+let dlgName = null, lastMarkErr = '';
 /* ---------- État historique (IndexedDB) et sélection de blocs ---------- */
 let idbOK = true, lastHistSig = '', idbP = null;
 const picked = new Set();
@@ -1793,6 +2763,175 @@ function saveProjects() {
   try { localStorage.setItem(PROJ_KEY, JSON.stringify(projects)); } catch (e) { /* quota */ }
 }
 const pKey = id => 'blocs.p.' + id;
+/* Projets de l'appareil : copie en mémoire (lecture synchrone), écrite dans IndexedDB ; localStorage seulement si IndexedDB est indisponible */
+const projCache = new Map();
+let projBooted = false, projUseLS = false, projFlushT = null, projFlushing = false;
+/* Enregistrements en attente d'écriture dans IndexedDB */
+const projPending = new Map();
+let storageInfo = { usage: 0, quota: 0, persisted: false, at: 0 };
+const projHashMemo = new Map();
+/* Projets modifiés ici ET sur le Cloud (jamais sauvegardés automatiquement tant que non résolus) */
+const cloudConflicts = new Set();
+/* Projets dont le menu d'actions est déplié dans la modale Projets */
+const projMenuOpen = new Set();
+/* Projets dont le menu d'actions est déplié dans Avancé › Projets */
+const advMenuOpen = new Set();
+/* Versions Cloud : on garde les 30 dernières, puis 1 par jour (90 jours), puis 1 par mois */
+const RETENTION_LAST = 30;
+/* État de la synchronisation Cloud (icône nuage, sauvegarde automatique, file d'attente) */
+let cloudBusy = 0, cloudErr = '', cloudRetryT = null, cloudRetryN = 0, cloudAutoT = null, cloudLastAuto = 0, conflictId = null, cloudChain = Promise.resolve();
+let autoCloudOn = loadFlag('blocs.autocloud', true);
+/* Dernière liste de projets connue sur le Cloud (null tant qu'elle n'a pas été lue) */
+let cloudIdx = { list: null, at: 0 };
+/* Enregistrement d'un projet sur l'appareil (copie en mémoire, null s'il n'y est pas) */
+function projLocal(id) {
+  return projCache.get(id) || null;
+}
+/* Empreinte double (≈ 64 bits) du contenu d'un projet : sert à savoir s'il a changé depuis la dernière synchro Cloud */
+function projHash(s) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 33) + s.charCodeAt(i)) | 0;
+  return hashStr(s) + '.' + (h >>> 0).toString(36);
+}
+/* Vrai si le projet a un contenu qui n'est pas (encore) identique à sa dernière version Cloud */
+function projNeedsBackup(id) {
+  const s = projLocal(id);
+  const text = id === projects.cur ? $('src').value : (s && typeof s.text === 'string' ? s.text : '');
+  if (!text.trim()) return false;
+  return !s || !s._cloudHash || s._cloudHash !== projTextHash(id, text);
+}
+/* Vrai si la copie de l'appareil est identique à la dernière version Cloud (donc sans risque à retirer) */
+function projSynced(id) {
+  const s = projLocal(id);
+  return !!(s && s._cloudHash && typeof s.text === 'string' && s._cloudHash === projTextHash(id, s.text));
+}
+/* Libère de la place : retire de l'appareil les projets déjà sauvegardés sur le Cloud et non modifiés (jamais le projet actif).
+   target : taille visée en caractères (sans target, tous les projets concernés sont retirés). */
+function freeLocalSpace(keepId, target) {
+  let n = 0;
+  for (const p of projects.list) {
+    if (typeof target === 'number' && estimateLocalStorageSize() <= target) break;
+    if (p.id === projects.cur || p.id === keepId) continue;
+    if (!projCache.has(p.id) || !projSynced(p.id)) continue;
+    projDrop(p.id);
+    n++;
+  }
+  return n;
+}
+function cloudKnows(id) {
+  return !!(cloudIdx.list && cloudIdx.list.some(r => r.id === id));
+}
+/* Enregistre un projet sur l'appareil. Renvoie false si le stockage est plein. */
+function projPut(id, rec) {
+  if (projUseLS) {
+    const raw = JSON.stringify(rec);
+    try {
+      localStorage.setItem(pKey(id), raw);
+    } catch (e) {
+      if (!freeLocalSpace(id)) return false;
+      try { localStorage.setItem(pKey(id), raw); } catch (e2) { return false; }
+    }
+  }
+  projCache.set(id, rec);
+  if (!projUseLS) projQueue(id, rec);
+  return true;
+}
+function projQueue(id, rec) {
+  projPending.set(id, rec);
+  if (!projFlushT) projFlushT = setTimeout(projFlush, 250);
+}
+/* Écrit dans IndexedDB les projets modifiés (regroupés : une écriture par projet, la plus récente) */
+async function projFlush() {
+  projFlushT = null;
+  if (projFlushing) { projFlushT = setTimeout(projFlush, 250); return; }
+  projFlushing = true;
+  try {
+    for (const [id, rec] of Array.from(projPending)) {
+      try {
+        await idbSet('p:' + id, rec);
+      } catch (e) {
+        let ok = false;
+        if (freeLocalSpace(id)) {
+          try { await idbSet('p:' + id, rec); ok = true; } catch (e2) { /* toujours plein */ }
+        }
+        if (!ok) {
+          notify('Stockage de l\'appareil plein : sauvegardez sur le Cloud pour libérer de la place.', { kind: 'err', ms: 0, key: 'quota' });
+          continue;
+        }
+      }
+      if (projPending.get(id) === rec) projPending.delete(id);
+      if (!projCache.has(id)) idbDel('p:' + id).catch(() => { });
+    }
+  } finally {
+    projFlushing = false;
+  }
+}
+/* Retire un projet de l'appareil (mémoire, IndexedDB et localStorage) */
+function projDrop(id) {
+  projCache.delete(id);
+  projPending.delete(id);
+  projHashMemo.delete(id);
+  try { localStorage.removeItem(pKey(id)); } catch (e) { /* stockage indisponible */ }
+  if (!projUseLS) idbDel('p:' + id).catch(() => { });
+}
+/* Chargement des projets au démarrage : lit IndexedDB, migre l'ancien localStorage, demande le stockage persistant */
+async function projBoot() {
+  try {
+    const rows = await idbEach('p:');
+    rows.forEach(r => {
+      if (r[1] && typeof r[1] === 'object') projCache.set(r[0].slice(2), r[1]);
+    });
+  } catch (e) {
+    projUseLS = true;
+  }
+  for (const p of projects.list) {
+    let s = null;
+    try { s = JSON.parse(localStorage.getItem(pKey(p.id)) || 'null'); } catch (e) { /* illisible */ }
+    if (!s) continue;
+    if (projUseLS) { projCache.set(p.id, s); continue; }
+    if (!projCache.has(p.id)) {
+      projCache.set(p.id, s);
+      try { await idbSet('p:' + p.id, s); } catch (e) { continue; }
+    }
+    try { localStorage.removeItem(pKey(p.id)); } catch (e) { /* stockage indisponible */ }
+  }
+  projBooted = true;
+  try {
+    if (navigator.storage && navigator.storage.persist) {
+      navigator.storage.persist().then(ok => { storageInfo.persisted = !!ok; }).catch(() => { });
+    }
+  } catch (e) { /* non supporté */ }
+  refreshStorageInfo(true);
+}
+function refreshStorageInfo(force) {
+  if (!force && Date.now() - storageInfo.at < 60000) return;
+  storageInfo.at = Date.now();
+  try {
+    if (navigator.storage && navigator.storage.estimate) {
+      navigator.storage.estimate().then(e => { storageInfo.usage = e.usage || 0; storageInfo.quota = e.quota || 0; }).catch(() => { });
+    }
+    if (navigator.storage && navigator.storage.persisted) {
+      navigator.storage.persisted().then(p => { storageInfo.persisted = !!p; }).catch(() => { });
+    }
+  } catch (e) { /* non supporté */ }
+}
+/* Empreinte d'un texte de projet, mémorisée tant que le texte ne change pas */
+function projTextHash(id, text) {
+  const m = projHashMemo.get(id);
+  if (m && m.t === text) return m.h;
+  const h = projHash(text);
+  projHashMemo.set(id, { t: text, h: h });
+  return h;
+}
+/* Le contenu de l'appareil est identique à la version Cloud : on le marque comme synchronisé */
+function cloudMarkSynced(id, updatedAt, text) {
+  const s = projLocal(id);
+  if (!s) return;
+  projPut(id, Object.assign({}, s, { text: text, _cloudUpdatedAt: updatedAt, _cloudHash: projHash(text) }));
+}
+function fmtSize(n) {
+  return n >= 1073741824 ? (n / 1073741824).toFixed(1) + ' Go' : (n / 1048576).toFixed(1) + ' Mo';
+}
 /* ---------- Ce que l'IA connaît : empreinte du contenu propre de chaque bloc ---------- */
 const SNAP_KEY = 'blocs.snap';
 let aiSnap = {};
@@ -1870,6 +3009,28 @@ function idbSet(key, val) {
     tx.onerror = tx.onabort = () => rej(tx.error);
   }));
 }
+function idbDel(key) {
+  return idbDb().then(db => new Promise((res, rej) => {
+    const tx = db.transaction('kv', 'readwrite');
+    tx.objectStore('kv').delete(key);
+    tx.oncomplete = () => res();
+    tx.onerror = tx.onabort = () => rej(tx.error);
+  }));
+}
+/* Toutes les entrées dont la clé commence par prefix : [[clé, valeur], …] */
+function idbEach(prefix) {
+  return idbDb().then(db => new Promise((res, rej) => {
+    const out = [];
+    const q = db.transaction('kv').objectStore('kv').openCursor(IDBKeyRange.bound(prefix, prefix + '\uffff'));
+    q.onsuccess = () => {
+      const c = q.result;
+      if (!c) { res(out); return; }
+      out.push([c.key, c.value]);
+      c.continue();
+    };
+    q.onerror = () => rej(q.error);
+  }));
+}
 function histSig() {
   return hist.length + ':' + (hist.length ? hist[hist.length - 1].t : 0);
 }
@@ -1900,6 +3061,17 @@ function topBlocks(list) {
 }
 
 const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+/* Badges des projets : clé → [symbole, libellé de l'infobulle] */
+const PJ_BADGES = {
+  act: ['i-file', 'Projet ouvert'],
+  dev: ['i-phone', 'Sur cet appareil'],
+  cld: ['i-cloud', 'Sur le Cloud'],
+  ok: ['i-check', 'Synchronisé'],
+  pend: ['i-upload', 'À sauvegarder'],
+  new: ['i-download', 'À récupérer'],
+  conf: ['i-alert', 'Conflit'],
+  bin: ['i-trash', 'Corbeille du Cloud']
+};
 /* ---------- Coloration syntaxique du champ code (palette VS Code Dark+) ---------- */
 const HL_CTRL = new Set(['if', 'else', 'for', 'while', 'do', 'switch', 'case', 'default', 'break', 'continue', 'return', 'try', 'catch', 'finally', 'throw', 'await', 'yield', 'import', 'export']);
 const HL_KW = new Set(['const', 'let', 'var', 'function', 'class', 'extends', 'async', 'static', 'new', 'typeof', 'instanceof', 'in', 'of', 'delete', 'void', 'this', 'super', 'true', 'false', 'null', 'undefined']);
@@ -2151,7 +3323,6 @@ function notify(msg, o) {
   return el;
 }
 
-const toast = (msg, kind) => notify(msg, { kind });
 
 /* ---------- Feuilles (overlays) ---------- */
 const isOpen = id => $(id).classList.contains('open');
@@ -2169,7 +3340,6 @@ function askClose(v) {
   $('ask').classList.remove('open');
   if (r) r(v);
 }
-/* Renvoie une promesse : le texte saisi (si input), true (confirmation) ou null (annulé) */
 function askDialog(o) {
   if (askResolve) askClose(null);
   askHasInput = !!o.input;
@@ -2184,7 +3354,9 @@ function askDialog(o) {
   ok.textContent = o.ok || 'OK';
   ok.classList.toggle('danger', !!o.danger);
   ok.classList.toggle('primary', !o.danger);
-  $('ask-cancel').style.display = o.cancel === false ? 'none' : '';
+  const cancelBtn = $('ask-cancel');
+  cancelBtn.textContent = o.cancelText || 'Annuler';
+  cancelBtn.style.display = o.cancel === false ? 'none' : '';
   openOv('ask');
   setTimeout(() => {
     if (o.input) { inp.focus(); inp.select(); } else ok.focus();
@@ -2270,16 +3442,77 @@ async function readClip() {
   }
 }
 
+function estimateLocalStorageSize() {
+  let total = 0;
+  try {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith('blocs.')) {
+        total += (localStorage.getItem(key) || '').length;
+      }
+    }
+  } catch (e) { /* stockage indisponible */ }
+if (!projUseLS) projCache.forEach(r => { if (r && typeof r.text === 'string') total += r.text.length; });
+return total;
+}
 /* ---------- Persistance et historique ---------- */
 function save() {
-  hist = hist.slice(-MAX_HIST);
-  const data = { text: $('src').value, level: String(getLevel()) };
-  if (!idbOK) { saveLegacy(data); return; }
-  try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch (e) { /* quota */ }
-  const sig = histSig();
-  if (sig === lastHistSig) return;
-  lastHistSig = sig;
-  idbSet('hist', hist).catch(() => { idbOK = false; saveLegacy(data); });
+if (!projBooted) return false;
+hist = hist.slice(-MAX_HIST);
+const data = { text: $('src').value, level: String(getLevel()) };
+  
+refreshStorageInfo();
+const lowSpace = projUseLS
+  ? estimateLocalStorageSize() > 3 * 1024 * 1024
+  : (storageInfo.quota > 0 && storageInfo.usage > storageInfo.quota * 0.8);
+if (lowSpace) {
+  /* Place qui diminue : les projets déjà sauvegardés sur le Cloud et non modifiés quittent l'appareil (récupérables dans « Projets ») */
+  freeLocalSpace(projects.cur, projUseLS ? 2 * 1024 * 1024 : undefined);
+  const stillLow = projUseLS
+    ? estimateLocalStorageSize() > 4 * 1024 * 1024
+    : storageInfo.usage > storageInfo.quota * 0.9;
+  if (stillLow && !save._warnedStorage) {
+    save._warnedStorage = true;
+    notify('Stockage local presque plein. Sauvegardez sur le Cloud pour sécuriser vos projets et libérer de l\'espace.', {
+      kind: 'warn',
+      ms: 0,
+      key: 'storage',
+      actions: [
+        { label: 'Sauvegarder', fn: () => { openOv('clouddlg'); renderCloudDialog(); } },
+        { label: 'Ignorer', fn: () => { save._warnedStorage = false; } }
+      ]
+    });
+  }
+}
+
+/* On sécurise TOUJOURS le projet en cours dans son propre emplacement */
+const prev = projLocal(projects.cur);
+const rec = {
+  text: data.text,
+  level: data.level,
+  snap: aiSnap,
+  _cloudUpdatedAt: prev && prev._cloudUpdatedAt ? prev._cloudUpdatedAt : 0,
+  _cloudHash: prev && prev._cloudHash ? prev._cloudHash : ''
+};
+if (!projPut(projects.cur, rec)) {
+  if (!save._warnedQuota) {
+    save._warnedQuota = true;
+    notify('Stockage local plein. Impossible de sauvegarder automatiquement.', { kind: 'err', ms: 0 });
+  }
+  return false;
+}
+
+/* Le texte n'est plus dupliqué dans STORE_KEY : il vit dans l'emplacement du projet */
+const meta = { level: data.level };
+scheduleAutoCloud();
+updateCloudIcon();
+if (!idbOK) { saveLegacy(meta); return true; }
+try { localStorage.setItem(STORE_KEY, JSON.stringify(meta)); } catch (e) { /* quota */ }
+const sig = histSig();
+if (sig === lastHistSig) return true;
+lastHistSig = sig;
+idbSet('hist', hist).catch(() => { idbOK = false; saveLegacy(meta); });
+return true;
 }
 
 function pushHistory(label) {
@@ -2320,11 +3553,11 @@ function redoLast() {
 
 /* ---------- Rafraîchissement ---------- */
 function refresh() {
-  const text = $('src').value;
-  const pm = parseMarks(text);
-  const lines = text ? text.split('\n').length : 0;
-  $('nb').textContent = pm.blocks.length ? '(' + pm.blocks.length + ')' : '';
-  highlight();
+const text = $('src').value;
+const pm = parseMarks(text);
+const lines = text ? text.split('\n').length : 0;
+$('nb').textContent = pm.blocks.length ? String(pm.blocks.length) : '';
+highlight();
   $('stats').innerHTML = !text ? 'Vide'
     : '<b>' + lines + '</b> l · ' + (pm.blocks.length ? '<b>' + pm.blocks.length + '</b> blocs' : 'non balisé');
   $('b-undo-top').disabled = !hist.length;
@@ -2341,15 +3574,19 @@ function refresh() {
     renderHistory();
   }
 }
-/* Bouton principal : « Analyser » tant que le code n'est pas balisé, puis « Coller & appliquer » */
+/* Bouton principal : « Analyser » tant que le code n'est pas balisé, puis « Coller & appliquer ».
+   Le bouton Découpage perd son libellé dès que le code est balisé (il ne montre plus que le niveau). */
 function syncMainBtn(nBlocks) {
   $('b-main-t').textContent = nBlocks ? 'Coller & appliquer' : 'Analyser';
+  const lbl = $('level-lbl');
+  if (lbl) lbl.style.display = nBlocks ? 'none' : '';
 }
 
 function renderBlocks(pm) {
-  pm = pm || parseMarks($('src').value);
-  const q = $('q').value.trim().toLowerCase(), subs = $('subs').checked;
-  const all = pm.blocks;
+pm = pm || parseMarks($('src').value);
+const q = $('q').value.trim().toLowerCase(), subs = $('subs').checked;
+const all = pm.blocks;
+updPick();
   /* nsub : nombre de sous-blocs de chaque bloc qui en a ; tree : l'arbre n'est actif que sans recherche et avec les sous-blocs */
   const nsub = new Map();
   all.forEach((b, i) => {
@@ -2378,15 +3615,15 @@ function renderBlocks(pm) {
     const fold = tree && n
       ? '<button class="fold" data-f="' + esc(b.name) + '" aria-label="Replier ou déplier">' + (fd ? '▸' : '▾') + '</button>'
       : '<span class="fold"></span>';
-    return '<div class="card" style="margin-left:' + Math.min(b.depth, 4) * 12 + 'px">' +
-      '<div class="nm nmrow">' + fold + '<label class="pick"><input type="checkbox" data-p="' + esc(b.name) + '"' + (picked.has(b.name) ? ' checked' : '') + '><span>' + esc(b.name) + '</span></label></div>' +
-      '<div class="meta2"><span class="chipc ' + b.lang + '">' + b.lang + '</span>' + b.lines + ' ligne' + (b.lines > 1 ? 's' : '') +
-      (fd ? ' · ' + n + ' sous-bloc' + (n > 1 ? 's' : '') + ' replié' + (n > 1 ? 's' : '') : '') + '</div>' +
-      '<div class="acts" data-n="' + esc(b.name) + '">' +
-      '<button class="sm" data-a="copy">Copier</button>' +
-      '<button class="sm" data-a="view">Voir</button>' +
-      '<button class="sm primary" data-a="rep">Remplacer…</button>' +
-      '<button class="sm" data-a="goto">Aller</button></div></div>';
+return '<div class="bk' + (b.depth ? ' nest' : '') + '" style="margin-left:' + Math.min(b.depth, 3) * 10 + 'px">' +
+  '<div class="bk-top">' + fold + '<label class="pick"><input type="checkbox" data-p="' + esc(b.name) + '"' + (picked.has(b.name) ? ' checked' : '') + '><span class="bk-nm">' + esc(b.name) + '</span></label></div>' +
+  '<div class="bk-bot"><div class="bk-info"><span class="chipc ' + b.lang + '">' + b.lang + '</span>' + b.lines + ' l.' +
+  (fd ? ' · ▸ ' + n + ' sous-bloc' + (n > 1 ? 's' : '') : '') + '</div>' +
+  '<div class="acts" data-n="' + esc(b.name) + '">' +
+  '<button class="ib" data-a="copy" aria-label="Copier" title="Copier"><svg class="ic"><use href="#i-copy"/></svg></button>' +
+  '<button class="ib" data-a="view" aria-label="Voir" title="Voir"><svg class="ic"><use href="#i-eye"/></svg></button>' +
+  '<button class="ib" data-a="rep" aria-label="Remplacer…" title="Remplacer…"><svg class="ic"><use href="#i-edit"/></svg></button>' +
+  '<button class="ib" data-a="goto" aria-label="Aller au bloc" title="Aller au bloc"><svg class="ic"><use href="#i-goto"/></svg></button></div></div></div>';
   }).join('') + (list.length > 500 ? '<div class="empty">… ' + (list.length - 500) + ' autres (affinez la recherche)</div>' : '');
 }
 /* Replie (ou déplie) tous les blocs qui ont des sous-blocs */
@@ -2399,15 +3636,24 @@ function foldAll(on) {
   }
   renderBlocks();
 }
+/* Barre d'envoi : visible seulement quand des blocs sont cochés, avec leur nombre */
+function updPick() {
+  const bar = $('selbar');
+  if (!bar) return;
+  bar.hidden = !picked.size;
+  $('pk-n').textContent = String(picked.size);
+}
 
 function renderHistory() {
-  const box = $('hlist');
-  if (!hist.length) { box.innerHTML = '<div class="empty">Aucune version enregistrée.</div>'; return; }
-  box.innerHTML = hist.map((h, i) => ({ h, i })).reverse().map(({ h, i }) =>
-    '<div class="card"><div class="nm">' + esc(h.label) + '</div><div class="meta2">' +
-    new Date(h.t).toLocaleString('fr-FR') + ' · ' + h.text.split('\n').length + ' lignes · ' + Math.round(h.text.length / 1024) + ' Ko</div>' +
-    '<div class="acts" data-i="' + i + '"><button class="sm primary" data-a="restore">Restaurer</button>' +
-    '<button class="sm" data-a="hcopy">Copier</button></div></div>').join('');
+const box = $('hlist');
+$('hn').textContent = hist.length ? String(hist.length) : '';
+if (!hist.length) { box.innerHTML = '<div class="empty">Aucune version enregistrée.</div>'; return; }
+box.innerHTML = hist.map((h, i) => ({ h, i })).reverse().map(({ h, i }) =>
+  '<div class="hs"><div class="hs-b"><div class="hs-nm">' + esc(h.label) + '</div><div class="hs-m">' +
+  new Date(h.t).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) +
+  ' · ' + h.text.split('\n').length + ' l. · ' + Math.max(1, Math.round(h.text.length / 1024)) + ' Ko</div></div>' +
+  '<div class="acts" data-i="' + i + '"><button class="sm primary" data-a="restore">Restaurer</button>' +
+  '<button class="ib" data-a="hcopy" aria-label="Copier cette version" title="Copier"><svg class="ic"><use href="#i-copy"/></svg></button></div></div>').join('');
 }
 
 /* ---------- Diff ---------- */
@@ -2575,13 +3821,6 @@ function copyChanged() {
   copyText(msg, 'Mise à jour copiée ✓ — collez-la à l\'IA');
 }
 
-async function pasteCode() {
-  const t = await readClip();
-  if (t === null) return;
-  pushHistory('Avant collage');
-  setText(t);
-  notify('Collé ✓ · ' + t.split('\n').length + ' lignes', { kind: 'ok' });
-}
 
 async function pasteAndApply() {
   if (!parseMarks($('src').value).blocks.length) { notify('Code non balisé : touchez « Analyser »', { kind: 'err' }); return; }
@@ -2597,109 +3836,254 @@ function clearCode() {
   setText('');
   notify('Code vidé', { ms: 7000, actions: [{ label: '↶ Annuler', fn: undoLast }] });
 }
-/* ---------- Projets : liste, changement, création, renommage, suppression ---------- */
 function renderProjects() {
-  $('proj-cur').textContent = (projects.list.find(p => p.id === projects.cur) || {}).name || '—';
-  $('plist').innerHTML = projects.list.map(p =>
-    '<div class="card"><div class="nm">' + esc(p.name) + (p.id === projects.cur ? ' <span class="chipc">actif</span>' : '') + '</div>' +
-    '<div class="acts" data-id="' + esc(p.id) + '">' +
-    (p.id === projects.cur ? '' : '<button class="sm primary" data-a="open">Ouvrir</button>') +
-    '<button class="sm" data-a="ren">Renommer</button>' +
-    '<button class="sm" data-a="del">Supprimer</button></div></div>').join('');
+  if ($('proj-cur')) {
+    $('proj-cur').textContent = (projects.list.find(p => p.id === projects.cur) || {}).name || '—';
+  }
+let tok = false;
+try { tok = !!localStorage.getItem('blocs.gh.token'); } catch (e) { /* stockage indisponible */ }
+$('pn').textContent = String(projects.list.length);
+$('plist').innerHTML = projects.list.map(p => {
+  const s = projLocal(p.id);
+  const isCur = p.id === projects.cur;
+  const hasLocal = !!s || isCur;
+  const known = !!cloudIdx.list;
+  const rp = known ? cloudIdx.list.find(r => r.id === p.id && !r.deleted) : null;
+  const inCloud = known ? !!rp : !!(s && s._cloudHash);
+  const unsaved = projNeedsBackup(p.id);
+  const newer = !!(rp && rp.updatedAt > ((s && s._cloudUpdatedAt) || 0));
+  const conf = cloudConflicts.has(p.id) || (unsaved && newer);
+  const kb = isCur ? Math.round($('src').value.length / 1024) : (s && typeof s.text === 'string' ? Math.round(s.text.length / 1024) : 0);
+  const pid = esc(p.id);
+  const open = advMenuOpen.has(p.id);
+  const bd = [];
+  if (isCur) bd.push(pjBadge('act'));
+  if (hasLocal) bd.push(pjBadge('dev'));
+  if (inCloud) bd.push(pjBadge('cld'));
+  if (conf) bd.push(pjBadge('conf'));
+  else if (unsaved && (tok || inCloud)) bd.push(pjBadge('pend'));
+  else if (newer || !hasLocal) bd.push(pjBadge('new'));
+  else if (inCloud) bd.push(pjBadge('ok'));
+  const sub = [];
+  if (hasLocal) sub.push(kb + ' Ko');
+  if (rp && rp.currentVersion) sub.push('☁ ' + esc(rp.currentVersion));
+  return '<div class="pj' + (isCur ? ' on' : '') + '"><div class="pj-row">' +
+    '<button class="pj-main" data-adv-open="' + pid + '"><span class="pj-body">' +
+    '<span class="pj-nm"><span class="pj-t">' + esc(p.name) + '</span><span class="bdgs">' + bd.join('') + '</span></span>' +
+    '<span class="pj-sub">' + (sub.join(' · ') || '—') + '</span></span></button>' +
+    '<button class="pj-more" data-adv-menu="' + pid + '" aria-expanded="' + (open ? 'true' : 'false') + '" aria-label="Actions">⋯</button></div>' +
+    (conf ? '<div class="pj-conf"><button class="sm primary" style="flex:1" data-adv-conflict="' + pid + '">Résoudre le conflit</button></div>' : '') +
+    '<div class="pj-acts"' + (open ? '' : ' hidden') + '>' +
+    '<button class="sm" data-adv-ren="' + pid + '">Renommer</button>' +
+    (hasLocal || !inCloud ? '<button class="sm" data-adv-del="' + pid + '">' + (inCloud || tok ? 'Retirer' : 'Supprimer') + '</button>' : '') +
+    '<button class="sm danger" data-adv-purge="' + pid + '">Supprimer partout</button>' +
+    '</div></div>';
+}).join('');
   renderProjDlg();
   renderProjSel();
 }
-async function switchProject(id) {
+async function switchProject(id, skipSave = false) {
   if (switchProject._busy) return;
   if (id === projects.cur || !projects.list.some(p => p.id === id)) { renderProjects(); return; }
   switchProject._busy = true;
-  try {
-    save();
-    let s = null, nh = null;
-    try { s = JSON.parse(localStorage.getItem(pKey(id)) || 'null'); } catch (e) { /* stockage indisponible */ }
-    if (idbOK) { try { nh = await idbGet('hist:' + id); } catch (e) { /* IndexedDB indisponible */ } }
-    if (!Array.isArray(nh)) nh = s && Array.isArray(s.hist) ? s.hist : [];
-    const old = projects.cur;
-    try {
-      localStorage.setItem(pKey(old), JSON.stringify({
-        text: $('src').value, level: String(getLevel()), snap: aiSnap,
-        hist: idbOK ? undefined : hist.slice(-MAX_HIST)
-      }));
-    } catch (e) {
-      notify('Stockage plein : changement de projet annulé', { kind: 'err' });
-      renderProjects();
+try {
+  /* Sauvegarde locale sauf si l'appelant (ex. newProject) s'en est déjà occupé */
+  if (!skipSave) {
+    if (!save()) {
+      notify('Changement de projet annulé : impossible de sauvegarder l\'état actuel.', { kind: 'err', ms: 0 });
       return;
     }
-    if (idbOK) idbSet('hist:' + old, hist).catch(() => { });
-    projects.cur = id;
-    saveProjects();
-    hist = nh;
-    aiSnap = (s && s.snap) || {};
-    saveSnap();
-    redoStack.length = 0;
-    picked.clear();
-    lastHistSig = '';
-    setLevel(parseInt((s && s.level) || '2', 10));
-    $('resp').value = '';
-    $('result').innerHTML = '';
-    setText((s && s.text) || '');
-    renderProjects();
-    notify('Projet « ' + projects.list.find(p => p.id === id).name + ' » ouvert', { kind: 'ok' });
-  } finally {
-    switchProject._busy = false;
   }
+  const old = projects.cur;
+
+  /* L'historique du projet quitté est conservé à part */
+  if (idbOK) { try { await idbSet('hist:' + old, hist); } catch (e) { /* IndexedDB indisponible */ } }
+
+  /* 1. Projet quitté : copie Cloud seulement s'il a changé depuis la dernière sauvegarde */
+  if (!skipSave && cloudToken.get() && projNeedsBackup(old)) {
+    try {
+      await cloudSaveProject(old);
+      notify('Projet précédent sauvegardé sur le Cloud ✓', { kind: 'ok', ms: 1500 });
+    } catch (e) {
+      if (e && e.conflict) notifyConflict(old);
+      else notify('Sauvegarde Cloud impossible (' + e.message + ') : le projet reste sur cet appareil.', { kind: 'warn' });
+    }
+  }
+
+  /* 2. Projet ouvert : version de l'appareil, ou récupérée sur le Cloud (absente, ou plus ancienne et non modifiée ici) */
+  let s = projLocal(id);
+  if (cloudToken.get() && !skipSave) {
+    try {
+      const remote = await cloudRemoteList();
+      const rp = remote.find(r => r.id === id);
+      if (rp && (!s || (!projNeedsBackup(id) && rp.updatedAt > (s._cloudUpdatedAt || 0)))) {
+        notify('Récupération depuis le Cloud', { kind: 'ok', key: 'pull', ms: 0 });
+        await cloudPullProject(id);
+        dismissKey('pull');
+        s = projLocal(id);
+      }
+    } catch (e) {
+      dismissKey('pull');
+      if (!s) {
+        notify('Impossible de récupérer le projet depuis le Cloud : ' + e.message, { kind: 'err', ms: 0 });
+        return;
+      }
+      notify('Cloud injoignable : version de l\'appareil ouverte (' + e.message + ')', { kind: 'warn' });
+    }
+  }
+  if (!s) {
+    notify('Ce projet n\'est pas sur cet appareil. Connectez le Cloud pour le récupérer.', { kind: 'err', ms: 0 });
+    return;
+  }
+
+  /* 3. Bascule */
+  let nh = null;
+  if (idbOK) { try { nh = await idbGet('hist:' + id); } catch (e) { /* IndexedDB indisponible */ } }
+  if (!Array.isArray(nh)) nh = Array.isArray(s.hist) ? s.hist : [];
+
+  projects.cur = id;
+  saveProjects();
+  hist = nh;
+  aiSnap = s.snap || {};
+  saveSnap();
+  redoStack.length = 0;
+  picked.clear();
+  lastHistSig = '';
+  $('resp').value = '';
+  $('result').innerHTML = '';
+  setText(s.text || '');
+  setLevel(parseInt(s.level || '2', 10));
+  renderProjects();
+  notify('Projet « ' + projects.list.find(p => p.id === id).name + ' » ouvert', { kind: 'ok' });
+} finally {
+  switchProject._busy = false;
+}
 }
 async function newProject() {
-  const v = await askDialog({ title: 'Nouveau projet', input: true, value: 'Projet ' + (projects.list.length + 1), placeholder: 'Nom du projet', ok: 'Créer' });
+  const v = await askDialog({ title: 'Nouveau projet', input: true, value: 'Nouveau projet', placeholder: 'Nom du projet', ok: 'Créer' });
   const name = (v || '').trim();
   if (!name) return;
-  const id = 'p' + Date.now().toString(36);
-  projects.list.push({ id, name: name.slice(0, 40) });
-  saveProjects();
-  await switchProject(id);
+
+// On force la sauvegarde locale actuelle avant toute chose
+if (!save()) {
+  notify('Création annulée : impossible de sauvegarder l\'état actuel.', { kind: 'err', ms: 0 });
+  return;
+}
+
+const hasContent = projNeedsBackup(projects.cur);
+const isConnected = !!cloudToken.get();
+
+if (hasContent && isConnected) {
+  const saveFirst = await askDialog({
+    title: 'Sauvegarder le projet actuel ?',
+    msg: 'Le projet actuel a des modifications non sauvegardées sur le Cloud.\nVoulez-vous le sauvegarder avant de créer « ' + name + ' » ?',
+    ok: 'Sauvegarder et créer',
+    cancelText: 'Créer sans sauvegarder',
+    danger: false
+  });
+
+  if (saveFirst) {
+    try {
+      await cloudSaveProject(projects.cur);
+      notify('Projet précédent sauvegardé sur le Cloud ✓', { kind: 'ok', ms: 2000 });
+    } catch (e) {
+      if (e && e.conflict) notifyConflict(projects.cur);
+      else notify('Erreur de sauvegarde : ' + e.message + ' — Le projet est conservé sur cet appareil.', { kind: 'warn' });
+    }
+  }
+}
+
+const id = 'p' + Date.now().toString(36);
+projects.list.push({ id, name: name.slice(0, 40) });
+saveProjects();
+
+projPut(id, { text: '', level: '2', snap: {}, _cloudUpdatedAt: 0, _cloudHash: '' });
+
+await switchProject(id, true);
+closeOv('clouddlg');
+notify('Projet « ' + name + ' » créé.', { kind: 'ok', ms: 5000 });
 }
 async function renameProject(id) {
-  const p = projects.list.find(x => x.id === id);
-  if (!p) return;
-  const v = await askDialog({ title: 'Renommer le projet', input: true, value: p.name, placeholder: 'Nom du projet', ok: 'Renommer' });
-  const name = (v || '').trim();
-  if (!name) return;
-  p.name = name.slice(0, 40);
-  saveProjects();
-  renderProjects();
+const p = projects.list.find(x => x.id === id);
+if (!p) return;
+const v = await askDialog({ title: 'Renommer le projet', input: true, value: p.name, placeholder: 'Nom du projet', ok: 'Renommer' });
+const name = (v || '').trim();
+if (!name) return;
+p.name = name.slice(0, 40);
+saveProjects();
+renderProjects();
+cloudRenameProject(p.id, p.name);
 }
 async function deleteProject(id) {
   const p = projects.list.find(x => x.id === id);
   if (!p) return;
   if (projects.list.length < 2) { notify('Impossible de supprimer le seul projet', { kind: 'err' }); return; }
-  const yes = await askDialog({ title: 'Supprimer le projet', msg: 'Supprimer le projet « ' + p.name + ' » et son historique ?\nCette action est définitive.', ok: 'Supprimer', danger: true });
+  
+const s0 = projLocal(id);
+const unsafe = projNeedsBackup(id);
+const connected = !!cloudToken.get();
+const inCloud0 = !!(s0 && s0._cloudHash) || cloudKnows(id);
+let delMsg;
+if (unsafe && !connected) delMsg = 'Ce projet n\'existe que sur cet appareil et aucun Cloud n\'est connecté : il sera supprimé DÉFINITIVEMENT.\n\nConnectez d\'abord le Cloud GitHub pour le sauvegarder.';
+else if (unsafe) delMsg = 'Ce projet a des modifications non sauvegardées. Il sera d\'abord sauvegardé sur le Cloud, puis retiré de cet appareil.';
+else if (inCloud0) delMsg = 'Retirer « ' + p.name + ' » de cet appareil ?\n\nIl reste sauvegardé sur le Cloud : vous le retrouverez dans « Projets » (Récupérer et ouvrir).';
+else delMsg = 'Supprimer « ' + p.name + ' » (projet vide) ?';
+const yes = await askDialog({
+  title: unsafe && !connected ? 'Supprimer définitivement' : 'Retirer de l\'appareil',
+  msg: delMsg,
+  ok: unsafe && !connected ? 'Supprimer' : 'Retirer',
+  danger: unsafe && !connected
+});
   if (!yes) return;
+  
   if (id === projects.cur) {
     const other = projects.list.find(x => x.id !== id);
     await switchProject(other.id);
     if (projects.cur === id) return;
   }
+/* Aucun projet n'est retiré tant qu'il n'est pas en sécurité sur le Cloud */
+if (projNeedsBackup(id) && cloudToken.get()) {
+  try {
+    await cloudSaveProject(id);
+  } catch (e) {
+    if (e && e.conflict) notifyConflict(id);
+    else notify('Retrait annulé : sauvegarde Cloud impossible (' + e.message + ')', { kind: 'err', ms: 0 });
+    return;
+  }
+}
+  
+const s1 = projLocal(id);
+const keep = !!(s1 && s1._cloudHash) || cloudKnows(id);
+projDrop(id);
+if (!keep) {
   projects.list = projects.list.filter(x => x.id !== id);
-  saveProjects();
-  try { localStorage.removeItem(pKey(id)); } catch (e) { /* stockage indisponible */ }
   if (idbOK) idbSet('hist:' + id, []).catch(() => { });
-  renderProjects();
-  notify('Projet supprimé', { kind: 'ok' });
+}
+saveProjects();
+renderProjects();
+notify(keep ? 'Projet retiré de l\'appareil (conservé sur le Cloud)' : 'Projet supprimé', { kind: 'ok' });
+  
+  if (cloudToken.get()) {
+    setTimeout(() => cloudAutoSync(), 1000);
+  }
 }
 /* Exporte projets, historique complet (IndexedDB), empreintes IA et réglages dans un seul JSON. */
 async function exportAllData() {
   save();
   const projectsOut = [];
   const histOut = {};
-  for (const p of projects.list) {
-    let s = null;
-    try { s = JSON.parse(localStorage.getItem(pKey(p.id)) || 'null'); } catch (e) { /* stockage indisponible */ }
-    projectsOut.push({ id: p.id, name: p.name, text: (s && s.text) || '', level: (s && s.level) || '2', snap: (s && s.snap) || {} });
-    let h = null;
-    if (idbOK) { try { h = await idbGet('hist:' + p.id); } catch (e) { /* IndexedDB indisponible */ } }
-    if (!Array.isArray(h)) h = (s && Array.isArray(s.hist)) ? s.hist : [];
-    histOut[p.id] = h;
+for (const p of projects.list) {
+  let s = projLocal(p.id);
+  if ((!s || typeof s.text !== 'string') && cloudToken.get()) {
+    try { s = await cloudFetchProject(p.id); } catch (e) { /* projet absent du Cloud */ }
   }
+  projectsOut.push({ id: p.id, name: p.name, text: (s && s.text) || '', level: (s && s.level) || '2', snap: (s && s.snap) || {} });
+  let h = null;
+  if (idbOK) { try { h = await idbGet('hist:' + p.id); } catch (e) { /* IndexedDB indisponible */ } }
+  if (p.id === projects.cur) h = hist.slice();
+  if (!Array.isArray(h)) h = (s && Array.isArray(s.hist)) ? s.hist : [];
+  histOut[p.id] = h;
+}
   const settings = {};
   ['blocs.hl', 'blocs.vib', 'blocs.sound', 'blocs.autotest', 'blocs.copyfinal', 'blocs.autofs', 'blocs.fs', 'blocs.level'].forEach(k => {
     try { const v = localStorage.getItem(k); if (v !== null) settings[k] = v; } catch (e) { /* stockage indisponible */ }
@@ -2750,15 +4134,20 @@ async function importAllData(file) {
     idMap.set(p.id, id);
     return { id, name: (p.name || 'Projet').slice(0, 40), text: p.text || '', level: p.level || '2', snap: p.snap || {}, hist: (data.history && data.history[p.id]) || [] };
   });
-  projects.list = imported.map(p => ({ id: p.id, name: p.name }));
-  const newCur = idMap.get(data.cur) || imported[0].id;
-  projects.cur = newCur;
-  saveProjects();
-  for (const p of imported) {
-    const payload = { text: p.text, level: p.level, snap: p.snap, hist: idbOK ? undefined : p.hist.slice(-MAX_HIST) };
-    try { localStorage.setItem(pKey(p.id), JSON.stringify(payload)); } catch (e) { /* quota */ }
-    if (idbOK) { try { await idbSet('hist:' + p.id, p.hist.slice(-MAX_HIST)); } catch (e) { idbOK = false; } }
-  }
+/* Les anciens projets de l'appareil sont retirés (mémoire et IndexedDB) : l'export de secours vient d'être téléchargé */
+const oldIds = projects.list.map(p => p.id);
+projects.list = imported.map(p => ({ id: p.id, name: p.name }));
+const newCur = idMap.get(data.cur) || imported[0].id;
+projects.cur = newCur;
+saveProjects();
+oldIds.forEach(oid => {
+  projDrop(oid);
+  if (idbOK) idbDel('hist:' + oid).catch(() => { });
+});
+for (const p of imported) {
+  projPut(p.id, { text: p.text, level: p.level, snap: p.snap, _cloudUpdatedAt: 0, _cloudHash: '' });
+  if (idbOK) { try { await idbSet('hist:' + p.id, p.hist.slice(-MAX_HIST)); } catch (e) { idbOK = false; } }
+}
   if (data.settings && typeof data.settings === 'object') {
     Object.keys(data.settings).forEach(k => {
       if (/^blocs\.(hl|vib|sound|autotest|copyfinal|autofs|fs|level)$/.test(k)) {
@@ -2786,18 +4175,18 @@ async function importAllData(file) {
 
 /* ---------- Voir / remplacer un bloc ---------- */
 function openBlockDlg(mode, name) {
-  const { blocks } = parseMarks($('src').value);
-  const hit = findBlock(blocks, name);
-  if (!hit) { notify('Bloc introuvable', { kind: 'err' }); return; }
-  const b = hit.block;
-  dlgMode = mode; dlgName = b.name;
-  $('dlg-title').textContent = (mode === 'view' ? 'Bloc : ' : 'Remplacer : ') + b.name;
-  const ta = $('dlg-text');
-  ta.readOnly = mode === 'view';
-  ta.value = mode === 'view' ? $('src').value.slice(b.outerStart, b.outerEnd) : '';
-  ta.placeholder = 'Collez le nouveau code de ce bloc (avec ou sans marqueurs)…';
-  $('dlg-ok').style.display = mode === 'view' ? 'none' : '';
-  openOv('dlg');
+const { blocks } = parseMarks($('src').value);
+const hit = findBlock(blocks, name);
+if (!hit) { notify('Bloc introuvable', { kind: 'err' }); return; }
+const b = hit.block;
+dlgName = b.name;
+$('dlg-title').textContent = (mode === 'view' ? 'Bloc : ' : 'Remplacer : ') + b.name;
+const ta = $('dlg-text');
+ta.readOnly = mode === 'view';
+ta.value = mode === 'view' ? $('src').value.slice(b.outerStart, b.outerEnd) : '';
+ta.placeholder = 'Collez le nouveau code de ce bloc (avec ou sans marqueurs)…';
+$('dlg-ok').style.display = mode === 'view' ? 'none' : '';
+openOv('dlg');
 }
 
 function dlgReplace() {
@@ -2839,7 +4228,7 @@ function download(name, text) {
 }
 
 /* ---------- Test d'exécution ---------- */
-let testErrors = [], testListener = null, testWarned = false;
+let testErrors = [], testListener = null;
 
 const PROBE = '<script>(function(){var P=function(o){try{parent.postMessage({blocsProbe:o},"*")}catch(e){}};' +
   'window.addEventListener("error",function(e){P({m:String(e.message),l:e.lineno})});' +
@@ -2979,16 +4368,33 @@ document.addEventListener('pointerdown', e => {
 
 /* ---------- Initialisation ---------- */
 function init() {
-  try {
-    const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
-    if (s) {
-      $('src').value = s.text || '';
-      hist = Array.isArray(s.hist) ? s.hist : [];
-      if (s.level) setLevel(parseInt(s.level, 10));
-    }
-    const lv = parseInt(localStorage.getItem('blocs.level'), 10);
-    if (lv >= 1 && lv <= 4) $('level-cur').textContent = lv;
-  } catch (e) { /* stockage indisponible */ }
+/* L'éditeur reste en lecture seule jusqu'au chargement des projets (IndexedDB) */
+$('src').readOnly = true;
+try {
+  const s = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+  if (s) {
+    hist = Array.isArray(s.hist) ? s.hist : [];
+    if (s.level) setLevel(parseInt(s.level, 10));
+  }
+  const lv = parseInt(localStorage.getItem('blocs.level'), 10);
+  if (lv >= 1 && lv <= 4) $('level-cur').textContent = lv;
+} catch (e) { /* stockage indisponible */ }
+projBoot().then(() => {
+  const p = projLocal(projects.cur);
+  let txt = p ? (p.text || '') : '';
+  if (!p) {
+    try {
+      const ls = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
+      if (ls && typeof ls.text === 'string') txt = ls.text;
+    } catch (e) { /* stockage indisponible */ }
+  }
+  $('src').value = txt;
+  $('src').readOnly = false;
+  if (p && p.level) setLevel(parseInt(p.level, 10));
+  refresh();
+  renderProjects();
+  updateCloudIcon();
+});
 
   /* écran principal */
   let tm;
@@ -3030,7 +4436,7 @@ function init() {
       exitFs();
       return;
     }
-    for (const id of ['ask', 'help', 'levelsel', 'projsel', 'tdlg', 'dlg', 'adv']) if (isOpen(id)) { closeOv(id); break; }
+for (const id of ['ask', 'help', 'splitdlg', 'levelsel', 'projsel', 'tdlg', 'dlg', 'adv']) if (isOpen(id)) { closeOv(id); break; }
   });
 
   /* Avancé › Réponse de l'IA */
@@ -3052,11 +4458,12 @@ function init() {
     else if (a === 'rep') openBlockDlg('rep', name);
     else if (a === 'goto') gotoBlock(name);
   });
-  $('blist').addEventListener('change', e => {
-    const c = e.target.closest('input[data-p]');
-    if (!c) return;
-    if (c.checked) picked.add(c.dataset.p); else picked.delete(c.dataset.p);
-  });
+$('blist').addEventListener('change', e => {
+  const c = e.target.closest('input[data-p]');
+  if (!c) return;
+  if (c.checked) picked.add(c.dataset.p); else picked.delete(c.dataset.p);
+  updPick();
+});
   $('b-send-sel').onclick = copyPicked;
   $('b-unpick').onclick = () => { picked.clear(); renderBlocks(); };
   $('hlist').addEventListener('click', e => {
@@ -3129,17 +4536,136 @@ $('blist').addEventListener('click', e => {
 });
 /* Synchronisation de l'IA : bouton (Avancé › Outils) et mémorisation de l'envoi « Copier balisé » */
 $('b-sync').onclick = copyChanged;
-/* Raccourcis carrés (Avancé › Outils) */
+/* Raccourcis carrés (Avancé › Outils) — appui long sur « Bal » : découper le code balisé */
+let qbMarkedLP = false, qbMarkedTimer = null;
+$('qb-marked').addEventListener('pointerdown', () => {
+  qbMarkedLP = false;
+  clearTimeout(qbMarkedTimer);
+  qbMarkedTimer = setTimeout(() => {
+    qbMarkedLP = true;
+    buzz(20);
+    openSplitDlg();
+  }, 500);
+});
+['pointerup', 'pointercancel', 'pointerleave'].forEach(ev =>
+  $('qb-marked').addEventListener(ev, () => clearTimeout(qbMarkedTimer))
+);
+$('qb-marked').addEventListener('contextmenu', e => e.preventDefault());
 $('qb-marked').onclick = () => {
+  if (qbMarkedLP) { qbMarkedLP = false; return; }
   const v = $('src').value;
   if (!parseMarks(v).blocks.length) { notify('Code non balisé : touchez « Analyser »', { kind: 'err' }); return; }
   snapMark(v);
   copyText(v, 'Code balisé copié ✓');
 };
+const SPLIT_COUNTS = [2, 3, 6, 10, 15, 20];
+const SPLIT_KEY = 'blocs.split.count';
+let splitParts = [], splitCount = 0;
+/* Découpe le code balisé en n parties, sans jamais couper un bloc de premier niveau.
+   Les points de coupe sont les frontières entre blocs de premier niveau. */
+function splitBalanced(text, n) {
+  const { blocks } = parseMarks(text);
+  const tops = blocks.filter(b => b.depth === 0).sort((a, b) => a.outerStart - b.outerStart);
+  if (tops.length <= 1 || n <= 1) return [text];
+  n = Math.min(n, tops.length);
+  const validCuts = tops.slice(0, -1).map(b => b.outerEnd);
+  const m = validCuts.length;
+  const parts = [];
+  let start = 0;
+  for (let i = 1; i < n; i++) {
+    const idx = Math.min(m - 1, Math.floor(i * m / n));
+    parts.push(text.slice(start, validCuts[idx]));
+    start = validCuts[idx];
+  }
+  parts.push(text.slice(start));
+  return parts;
+}
+function renderSplitDlg() {
+  const text = $('src').value;
+  const tops = parseMarks(text).blocks.filter(b => b.depth === 0);
+  const maxN = tops.length;
+  $('split-counts').innerHTML = SPLIT_COUNTS.map(n =>
+    '<button data-n="' + n + '"' + (n > maxN ? ' disabled' : '') + (n === splitCount ? ' class="on"' : '') + '>' + n + '</button>'
+  ).join('');
+  const info = $('split-info'), box = $('split-parts');
+  const q = ($('split-q') ? $('split-q').value : '').trim();
+  if (!splitParts.length) {
+    info.innerHTML = 'Choisissez le nombre de parties ci-dessus · <b>' + maxN + '</b> bloc' + (maxN > 1 ? 's' : '') + ' disponible' + (maxN > 1 ? 's' : '');
+    info.className = 'split-info';
+    box.classList.remove('searching');
+    box.innerHTML = '<div class="empty" style="grid-column:1/-1">Aucune découpe pour le moment.</div>';
+    return;
+  }
+  const lines = text.split('\n').length;
+  const kb = Math.max(1, Math.round(text.length / 1024));
+  const ql = q.toLowerCase();
+  let hits = 0;
+  if (ql) splitParts.forEach(p => { if (p.toLowerCase().includes(ql)) hits++; });
+  if (ql) {
+    info.innerHTML = hits
+      ? '<b>' + hits + '</b> / ' + splitParts.length + ' partie' + (splitParts.length > 1 ? 's' : '') + ' contien' + (hits > 1 ? 'nent' : 't') + ' « ' + esc(q) + ' »'
+      : 'Aucune partie ne contient « ' + esc(q) + ' »';
+    info.className = 'split-info' + (hits ? '' : ' warn');
+  } else {
+    info.innerHTML = '<b>' + splitParts.length + '</b> partie' + (splitParts.length > 1 ? 's' : '') + ' · ' + lines + ' lignes · ' + kb + ' Ko';
+    info.className = 'split-info';
+  }
+  box.classList.toggle('searching', !!ql);
+  box.innerHTML = splitParts.map((p, i) => {
+    const l = p.split('\n').length;
+    const k = Math.max(1, Math.round(p.length / 1024));
+    const hit = ql && p.toLowerCase().includes(ql);
+    return '<button data-p="' + i + '"' + (hit ? ' class="hit"' : '') + '><span class="sn">' + (i + 1) + '</span><span class="sm2">' + l + ' l · ' + k + ' Ko</span></button>';
+  }).join('');
+}
+function openSplitDlg() {
+  const text = $('src').value;
+  const { blocks } = parseMarks(text);
+  if (!blocks.length) {
+    notify('Code non balisé : touchez « Analyser »', { kind: 'err' });
+    return;
+  }
+  const maxN = blocks.filter(b => b.depth === 0).length;
+  if (maxN < 2) {
+    notify('Pas assez de blocs de premier niveau pour découper', { kind: 'err' });
+    return;
+  }
+  let saved = 0;
+  try { saved = parseInt(localStorage.getItem(SPLIT_KEY), 10) || 0; } catch (e) { /* stockage indisponible */ }
+  splitCount = (saved >= 2 && saved <= maxN) ? saved : 0;
+  splitParts = splitCount ? splitBalanced(text, splitCount) : [];
+  const q = $('split-q');
+  if (q) q.value = '';
+  renderSplitDlg();
+  openOv('splitdlg');
+}
+$('split-counts').addEventListener('click', e => {
+  const b = e.target.closest('button[data-n]');
+  if (!b || b.disabled) return;
+  const n = parseInt(b.dataset.n, 10);
+  splitCount = n;
+  splitParts = splitBalanced($('src').value, n);
+  try { localStorage.setItem(SPLIT_KEY, String(n)); } catch (e) { /* stockage indisponible */ }
+  renderSplitDlg();
+  buzz(8);
+});
+$('split-parts').addEventListener('click', e => {
+  const b = e.target.closest('button[data-p]');
+  if (!b) return;
+  const i = parseInt(b.dataset.p, 10);
+  if (!splitParts[i]) return;
+  copyText(splitParts[i], 'Partie ' + (i + 1) + '/' + splitParts.length + ' copiée ✓');
+  document.querySelectorAll('#split-parts button.copied').forEach(x => x.classList.remove('copied'));
+  b.classList.add('copied');
+  clearTimeout(b._t);
+  b._t = setTimeout(() => b.classList.remove('copied'), 1200);
+});
+$('split-q').addEventListener('input', () => renderSplitDlg());
+$('splitdlg-x').onclick = () => closeOv('splitdlg');
 $('qb-prompt').onclick = () => copyText(PROMPT_TEXT, 'Prompt copié ✓');
 $('qb-all').onclick = () => copyAllForAI();
-/* Ouvre une modale dédiée à la gestion des projets */
-$('qb-proj').onclick = () => { closeOv('adv'); renderProjects(); openOv('projdlg'); };
+$('qb-proj').onclick = () => { closeOv('adv'); renderCloudDialog(); openOv('clouddlg'); };
+$('qb-need').onclick = copyRequested;
 /* Dessine la liste des projets dans la modale de sélection (cartes cliquables) */
 function renderProjSel() {
   $('plist3').innerHTML = projects.list.map(p =>
@@ -3179,8 +4705,6 @@ $('lvlist').addEventListener('click', e => {
   notify('Découpage : niveau ' + getLevel(), { kind: 'ok', ms: 1500 });
 });
 $('levelsel').addEventListener('click', e => { if (e.target === $('levelsel')) closeOv('levelsel'); });
-/* Ouvre la modale interne de choix du projet */
-$('b-proj-open').onclick = () => { renderProjSel(); openOv('projsel'); };
 $('projsel-x').onclick = () => closeOv('projsel');
 $('projsel-new').onclick = async () => { await newProject(); renderProjSel(); };
 $('plist3').addEventListener('click', e => {
@@ -3190,6 +4714,11 @@ $('plist3').addEventListener('click', e => {
 });
 /* Clic sur le fond : ferme la modale */
 $('projsel').addEventListener('click', e => { if (e.target === $('projsel')) closeOv('projsel'); });
+/* Légende des icônes de la modale Projets */
+$('cloud-projects').addEventListener('click', e => {
+  if (e.target.closest('#pj-help')) openOv('legend');
+});
+$('legend-x').onclick = () => closeOv('legend');
 /* Dessine la liste des projets dans la modale dédiée */
 function renderProjDlg() {
   $('plist2').innerHTML = projects.list.map(p =>
@@ -3255,15 +4784,39 @@ $('src').addEventListener('input', () => { cancelAnimationFrame(highlight._r); h
 $('src').addEventListener('scroll', () => { if (hlLines.length) hlPaint(false); }, { passive: true });
 /* Rétablir, projets, coloration, vibrations */
 $('b-redo-top').onclick = redoLast;
-$('b-proj-new').onclick = newProject;
+$('proj-bar').onclick = () => { renderCloudDialog(); openOv('clouddlg'); };
 $('plist').addEventListener('click', e => {
-  const btn = e.target.closest('button[data-a]');
+  const btn = e.target.closest('button[data-adv-open], button[data-adv-menu], button[data-adv-ren], button[data-adv-del], button[data-adv-purge], button[data-adv-conflict]');
   if (!btn) return;
-  const id = btn.parentElement.dataset.id, a = btn.dataset.a;
-  if (a === 'open') switchProject(id).then(() => closeOv('adv'));
-  else if (a === 'ren') renameProject(id);
-  else if (a === 'del') deleteProject(id);
+  const d = btn.dataset;
+  const id = d.advOpen || d.advMenu || d.advRen || d.advDel || d.advPurge || d.advConflict;
+  if (d.advMenu || (d.advOpen && id === projects.cur)) {
+    const pj = btn.closest('.pj');
+    const acts = pj && pj.querySelector('.pj-acts');
+    if (acts) {
+      acts.hidden = !acts.hidden;
+      if (acts.hidden) advMenuOpen.delete(id); else advMenuOpen.add(id);
+      const mb = pj.querySelector('.pj-more');
+      if (mb) mb.setAttribute('aria-expanded', acts.hidden ? 'false' : 'true');
+    }
+  } else if (d.advOpen) switchProject(id).then(() => { if (projects.cur === id) closeOv('adv'); });
+  else if (d.advRen) renameProject(id);
+  else if (d.advDel) deleteProject(id);
+  else if (d.advPurge) cloudPurgeProject(id);
+  else if (d.advConflict) openConflict(id);
 });
+/* Avancé › Projets : nouveau projet (referme Avancé si on bascule dessus) et accès au Cloud */
+$('adv-new-proj').onclick = async () => {
+  const before = projects.cur;
+  await newProject();
+  if (projects.cur !== before) closeOv('adv');
+};
+$('adv-cloud').onclick = () => { closeOv('adv'); renderCloudDialog(); openOv('clouddlg'); };
+/* Une section qui s'ouvre se cale dans la vue (les sections sont exclusives) */
+$('adv').addEventListener('toggle', e => {
+  const d = e.target;
+  if (d && d.open && d.matches && d.matches('details.acc')) d.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}, true);
 $('b-hl').onclick = toggleHl;
 $('b-hl').setAttribute('aria-pressed', hlOn ? 'true' : 'false');
 $('vib').checked = vibOn;
@@ -3283,6 +4836,1236 @@ bindToggle('tg-autotest', 'autotest');
 bindToggle('tg-copyfinal', 'copyfinal');
 bindToggle('tg-autofs', 'autofs');
 syncToggles();
+const CLOUD_REPO = {
+  owner: 'mekeirish',
+  name: 'Bcode-Projects',
+  branch: 'main',
+  api: 'https://api.github.com',
+  tokenKey: 'blocs.gh.token',
+  syncKey: 'blocs.gh.lastSync'
+};
+const cloudToken = {
+  get() {
+    try { return localStorage.getItem(CLOUD_REPO.tokenKey) || ''; }
+    catch (e) { return ''; }
+  },
+  set(t) {
+    try {
+      if (t) localStorage.setItem(CLOUD_REPO.tokenKey, t);
+      else localStorage.removeItem(CLOUD_REPO.tokenKey);
+    } catch (e) { /* stockage indisponible */ }
+  }
+};
+const cloudSync = {
+  get() {
+    try { return parseInt(localStorage.getItem(CLOUD_REPO.syncKey) || '0', 10) || 0; }
+    catch (e) { return 0; }
+  },
+  mark() {
+    try { localStorage.setItem(CLOUD_REPO.syncKey, String(Date.now())); }
+    catch (e) { /* stockage indisponible */ }
+  }
+};
+async function ghApi(method, path, body) {
+  const token = cloudToken.get();
+  if (!token) throw new Error('Aucun token GitHub enregistré.');
+  const url = CLOUD_REPO.api + '/repos/' + CLOUD_REPO.owner + '/' + CLOUD_REPO.name + path;
+  const headers = {
+    'Accept': 'application/vnd.github+json',
+    'Authorization': 'Bearer ' + token,
+    'X-GitHub-Api-Version': '2022-11-28',
+    'Content-Type': 'application/json'
+  };
+const opts = { method: method, headers: headers, cache: 'no-store' };
+if (body !== undefined) opts.body = JSON.stringify(body);
+const res = await fetch(url, opts);
+if (res.status === 404) return { ok: false, status: 404, data: null };
+if (res.status === 204) return { ok: true, status: 204, data: null };
+  if (!res.ok) {
+    let msg = 'GitHub HTTP ' + res.status;
+    try {
+      const j = await res.json();
+      if (j && j.message) msg = j.message;
+    } catch (e) { /* réponse non JSON */ }
+    if (res.status === 409) msg = 'Conflit (409) : le fichier distant a changé.';
+    throw new Error(msg);
+  }
+  return { ok: true, status: res.status, data: await res.json() };
+}
+async function ghGetFile(path) {
+  const r = await ghApi('GET', '/contents/' + path + '?ref=' + CLOUD_REPO.branch);
+  if (!r.ok) return null;
+  const d = r.data;
+  let text = '';
+let b64 = '';
+if (d.content && d.content.length) {
+  b64 = d.content.replace(/\s/g, '');
+} else if (d.sha && d.size > 0) {
+  /* Fichier de plus de 1 Mo : l'API « contents » n'en renvoie pas le contenu, on le lit par l'API « blobs » (jusqu'à 100 Mo) */
+  const bl = await ghApi('GET', '/git/blobs/' + d.sha);
+  if (bl.ok && bl.data && bl.data.content) b64 = bl.data.content.replace(/\s/g, '');
+}
+if (b64) {
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  text = new TextDecoder('utf-8').decode(bytes);
+}
+  return { text: text, sha: d.sha, path: d.path };
+}
+async function ghPutFile(path, text, message, expectedSha) {
+  /* expectedSha : undefined = récupérer le sha courant, null = ne doit pas exister, chaîne = doit correspondre */
+  let sha;
+  if (expectedSha === undefined) {
+    const existing = await ghGetFile(path);
+    sha = existing ? existing.sha : null;
+  } else {
+    sha = expectedSha;
+  }
+  const bytes = new TextEncoder().encode(text);
+  let bin = '';
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  const body = { message: message, content: btoa(bin), branch: CLOUD_REPO.branch };
+  if (sha) body.sha = sha;
+  try {
+    const r = await ghApi('PUT', '/contents/' + path, body);
+    return r.data;
+  } catch (e) {
+    if (expectedSha === null && /422|sha|supplied/i.test(e.message)) {
+      throw new Error('Conflit sur « ' + path + ' » : le fichier existe déjà (protection contre l\'écrasement).');
+    }
+    if (/409|Conflit/i.test(e.message)) {
+      throw new Error('Conflit sur « ' + path + ' » : le fichier distant a changé. Rafraîchissez puis réessayez.');
+    }
+    throw e;
+  }
+}
+async function cloudConnect(token) {
+  token = (token || '').trim();
+  if (!token) throw new Error('Token vide.');
+  cloudToken.set(token);
+  const r = await ghApi('GET', '');
+  if (!r.ok) {
+    cloudToken.set('');
+    throw new Error('Dépôt introuvable ou accès refusé.');
+  }
+  return r.data;
+}
+async function cloudBackupProject(id) {
+const proj = projects.list.find(p => p.id === id);
+if (!proj) throw new Error('Projet introuvable : ' + id);
+if (id === projects.cur) save();
+const s = projLocal(id);
+if (!s) throw new Error('Contenu local introuvable pour ' + id + '.');
+
+const folder = 'projects/' + id;
+const infoPath = folder + '/info.json';
+const infoFile = await ghGetFile(infoPath);
+let info;
+  if (infoFile) {
+    try { info = JSON.parse(infoFile.text); }
+    catch (e) { info = { id: id, name: proj.name, createdAt: Date.now(), versions: [] }; }
+  } else {
+    info = { id: id, name: proj.name, createdAt: Date.now(), versions: [] };
+  }
+  if (!Array.isArray(info.versions)) info.versions = [];
+
+  const nums = info.versions
+    .map(v => parseInt(String(v.id).replace(/^v/, ''), 10))
+    .filter(n => Number.isFinite(n));
+  let next = (nums.length ? Math.max.apply(null, nums) : 0) + 1;
+  let versionId = 'v' + String(next).padStart(3, '0');
+  let versionPath = folder + '/versions/' + versionId + '.json';
+
+  const payload = {
+    id: versionId,
+    createdAt: Date.now(),
+    label: proj.name,
+    text: s.text || '',
+    level: s.level || '2',
+    snap: s.snap || {}
+  };
+/* Les versions sont compressées en gzip (.json.gz) quand le navigateur le permet, sinon en .json */
+let saved = false, gzUsed = false, gzBytes = 0, gzOk = typeof CompressionStream === 'function';
+for (let attempt = 0; attempt < 5; attempt++) {
+  payload.id = versionId;
+  const payloadText = JSON.stringify(payload);
+  let gz = null;
+  if (gzOk) {
+    try { gz = await gzipText(payloadText); } catch (e) { gzOk = false; }
+  }
+  versionPath = folder + '/versions/' + versionId + (gz ? '.json.gz' : '.json');
+  try {
+    if (gz) await ghPutBytes(versionPath, gz, 'Save ' + versionId + ' for ' + id, null);
+    else await ghPutFile(versionPath, payloadText, 'Save ' + versionId + ' for ' + id, null);
+    gzUsed = !!gz;
+    gzBytes = gz ? gz.length : payloadText.length;
+    saved = true;
+    break;
+  } catch (e) {
+    if (!/existe déjà|Conflit/i.test(e.message)) throw e;
+    if (attempt === 4) throw e;
+    next++;
+    versionId = 'v' + String(next).padStart(3, '0');
+  }
+}
+if (!saved) throw new Error('Impossible de trouver un numéro de version libre.');
+
+info.name = proj.name;
+info.updatedAt = Date.now();
+info.currentVersion = versionId;
+info.deleted = false;
+delete info.deletedAt;
+info.versions.push({ id: versionId, createdAt: payload.createdAt, label: payload.label, gz: gzUsed, bytes: gzBytes });
+await ghPutFile(infoPath, JSON.stringify(info, null, 2), 'Update info for ' + id, infoFile ? infoFile.sha : null);
+
+  // Mise à jour du timestamp local pour éviter que la synchro auto ne re-télécharge ce projet
+  s._cloudUpdatedAt = info.updatedAt;
+/* On relit l'enregistrement le plus récent (l'utilisateur a pu taper pendant l'envoi) et on n'y ajoute que l'état Cloud */
+const recNow = Object.assign({}, projLocal(id) || s, { _cloudUpdatedAt: info.updatedAt, _cloudHash: projHash(payload.text) });
+projPut(id, recNow);
+
+return { id: id, versionId: versionId, info: info };
+}
+async function ghWriteIndexEntry(info) {
+  const idxPath = 'index.json';
+  const idxFile = await ghGetFile(idxPath);
+  let idx;
+if (idxFile) {
+  try { idx = JSON.parse(idxFile.text); }
+  catch (e) { idx = null; }
+}
+if (!idx || !Array.isArray(idx.projects)) {
+  /* Index absent ou illisible : on le reconstruit depuis les dossiers du dépôt (aucun projet n'est oublié) */
+  idx = { version: 1, updatedAt: 0, projects: await ghRebuildIndex() };
+}
+  if (!Array.isArray(idx.projects)) idx.projects = [];
+  idx.projects = idx.projects.filter(p => p.id !== info.id);
+idx.projects.push({
+  id: info.id,
+  name: info.name,
+  updatedAt: info.updatedAt,
+  currentVersion: info.currentVersion,
+  deleted: !!info.deleted
+});
+idx.updatedAt = Date.now();
+try {
+  await ghPutFile(idxPath, JSON.stringify(idx, null, 2), 'Update index for ' + info.id, idxFile ? idxFile.sha : null);
+} catch (e) {
+  /* Écriture simultanée depuis un autre appareil : on relit l'index et on réessaie une fois */
+  if (!ghWriteIndexEntry._retry && /Conflit/i.test(e.message)) {
+    ghWriteIndexEntry._retry = true;
+    try { return await ghWriteIndexEntry(info); } finally { ghWriteIndexEntry._retry = false; }
+  }
+  throw e;
+}
+return idx;
+}
+async function cloudBackupAll() {
+  const ids = projects.list.map(p => p.id);
+  const done = [];
+  const errors = [];
+for (let i = 0; i < ids.length; i++) {
+  /* Seuls les projets modifiés depuis leur dernière sauvegarde sont envoyés */
+  if (!projNeedsBackup(ids[i])) continue;
+  try {
+    const r = await cloudSaveProject(ids[i]);
+    if (!r.skipped) done.push(r);
+  } catch (e) {
+    errors.push(ids[i] + ' : ' + e.message);
+  }
+}
+  if (done.length) cloudSync.mark();
+  return { done: done, errors: errors };
+}
+async function cloudPullVersion(id, versionId, updatedAt) {
+const v = await cloudReadVersion(id, versionId);
+
+let proj = projects.list.find(p => p.id === id);
+  if (!proj) {
+    proj = { id: id, name: v.label || id };
+    projects.list.push(proj);
+    saveProjects();
+  }
+
+const s = projLocal(id);
+const oldText = id === projects.cur ? $('src').value : (s && s.text);
+if (oldText && oldText !== v.text) {
+  try {
+    let h;
+    if (id === projects.cur) h = hist.slice();
+    else {
+      h = await idbGet('hist:' + id);
+      if (!Array.isArray(h)) h = [];
+    }
+    h.push({ t: Date.now(), label: 'Avant récupération cloud ' + versionId, text: oldText });
+    if (h.length > MAX_HIST) h = h.slice(-MAX_HIST);
+    if (idbOK) { try { await idbSet('hist:' + id, h); } catch (e) { idbOK = false; } }
+  } catch (e) { /* IndexedDB indisponible */ }
+}
+
+const text = v.text || '';
+const newState = { text: text, level: v.level || '2', snap: v.snap || {}, _cloudUpdatedAt: updatedAt || Date.now(), _cloudHash: projHash(text) };
+/* Place insuffisante : projPut retire de l'appareil les projets déjà sauvegardés sur le Cloud, puis réessaie */
+if (!projPut(id, newState)) throw new Error('Stockage local plein : impossible de charger ce projet sur cet appareil.');
+
+return { id: id, versionId: versionId, name: proj.name };
+}
+async function cloudPullProject(id) {
+  const infoFile = await ghGetFile('projects/' + id + '/info.json');
+  if (!infoFile) throw new Error('Projet introuvable sur le cloud : ' + id);
+  const info = JSON.parse(infoFile.text);
+  if (!info.currentVersion) throw new Error('Aucune version disponible pour ' + id);
+  return await cloudPullVersion(id, info.currentVersion, info.updatedAt);
+}
+async function cloudPullAll() {
+  const idxFile = await ghGetFile('index.json');
+  if (!idxFile) return { pulled: [], errors: ['index.json introuvable sur le cloud.'] };
+  let idx;
+  try { idx = JSON.parse(idxFile.text); }
+  catch (e) { return { pulled: [], errors: ['index.json illisible.'] }; }
+const list = (Array.isArray(idx.projects) ? idx.projects : []).filter(p => !p.deleted);
+const pulled = [];
+const errors = [];
+for (let i = 0; i < list.length; i++) {
+  const rp = list[i];
+  try {
+    const s = projLocal(rp.id);
+    /* Absent de l'appareil : récupéré à la demande (Projets › Récupérer et ouvrir) */
+    if (!s) continue;
+    const newer = rp.updatedAt > (s._cloudUpdatedAt || 0);
+    if (projNeedsBackup(rp.id)) {
+      if (newer) errors.push(rp.id + ' : modifié ici ET sur le Cloud, version de l\'appareil conservée');
+      continue;
+    }
+    if (newer) pulled.push(await cloudPullProject(rp.id));
+  } catch (e) {
+    errors.push(rp.id + ' : ' + e.message);
+  }
+}
+  if (pulled.length) cloudSync.mark();
+  return { pulled: pulled, errors: errors };
+}
+async function cloudRestoreVersion(id, versionId) {
+  const yes = await askDialog({
+    title: 'Restaurer la version',
+    msg: 'Remplacer le projet local « ' + id + ' » par la version cloud ' + versionId + ' ?\nVotre état actuel sera d\'abord sauvegardé dans l\'historique local.',
+    ok: 'Restaurer'
+  });
+  if (!yes) return;
+try {
+  await cloudPullVersion(id, versionId);
+  /* Une version restaurée compte comme une modification : elle sera sauvegardée comme nouvelle version courante */
+  const rs = projLocal(id);
+  if (rs) projPut(id, Object.assign({}, rs, { _cloudHash: '' }));
+  if (id === projects.cur) await reloadCurrentFromStore();
+  renderProjects();
+  await renderCloudDialog();
+  notify('Version ' + versionId + ' restaurée ✓', { kind: 'ok' });
+} catch (e) {
+  notify('Restauration impossible : ' + e.message, { kind: 'err', ms: 0 });
+}
+}
+async function renderCloudDialog() {
+  const btn = $('b-cloud');
+if (btn) {
+  btn.style.color = '';
+  updateCloudIcon();
+}
+  const tokenBox = $('cloud-token-box');
+  const connectedBox = $('cloud-connected');
+  const status = $('cloud-status');
+  if (!tokenBox || !status) return;
+if (!cloudToken.get()) {
+  status.className = 'note warn';
+  status.textContent = 'Cloud non connecté : projets stockés sur cet appareil uniquement. Collez un token GitHub pour les sauvegarder.';
+  status.style.display = '';
+  tokenBox.style.display = '';
+  connectedBox.style.display = 'none';
+  renderProjectList(null);
+  return;
+}
+  status.className = 'note okk';
+  status.textContent = 'Connecté à ' + CLOUD_REPO.owner + '/' + CLOUD_REPO.name;
+  status.style.display = '';
+  tokenBox.style.display = 'none';
+  connectedBox.style.display = '';
+  const last = cloudSync.get();
+  $('cloud-last-sync').textContent = last
+    ? 'Dernière synchronisation : ' + new Date(last).toLocaleString('fr-FR')
+    : 'Aucune synchronisation encore.';
+/* Affichage immédiat (projets de l'appareil + dernier état connu du Cloud), complété ensuite par la lecture du Cloud */
+refreshStorageInfo(true);
+renderProjectList(cloudIdx.list);
+try {
+  const remote = await cloudRemoteList();
+  let added = false;
+  remote.forEach(rp => {
+    if (rp.deleted) return;
+    if (!projects.list.some(p => p.id === rp.id)) {
+      projects.list.push({ id: rp.id, name: rp.name || rp.id });
+      added = true;
+    }
+  });
+  if (added) {
+    saveProjects();
+    renderProjects();
+  }
+  renderProjectList(remote);
+  updateCloudIcon();
+} catch (e) {
+  renderProjectList(cloudIdx.list, e.message);
+}
+}
+async function cloudShowVersions(id) {
+  const box = document.getElementById('cloud-versions-' + id);
+  if (!box) return;
+  if (box.dataset.loaded === '1') {
+    box.innerHTML = '';
+    box.dataset.loaded = '0';
+    return;
+  }
+box.innerHTML = '<div class="status">Chargement…</div>';
+try {
+  const infoFile = await ghGetFile('projects/' + id + '/info.json');
+  if (!infoFile) { box.innerHTML = '<div class="note err">Info introuvable.</div>'; return; }
+  const info = JSON.parse(infoFile.text);
+  const versions = Array.isArray(info.versions) ? info.versions.slice().reverse() : [];
+  if (!versions.length) { box.innerHTML = '<div class="status">Aucune version.</div>'; return; }
+  box.innerHTML = versions.map(v =>
+    '<div class="vr"><div class="vr-t"><b>' + esc(v.id) + '</b> <span>' +
+    new Date(v.createdAt || 0).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }) +
+    (v.id === info.currentVersion ? ' · actuelle' : '') + '</span></div>' +
+    '<button class="sm primary" data-cloud-restore="' + esc(id) + '|' + esc(v.id) + '">Restaurer</button></div>'
+  ).join('');
+  box.dataset.loaded = '1';
+} catch (e) {
+  box.innerHTML = '<div class="note err">' + esc(e.message) + '</div>';
+}
+}
+/* Liste des projets du Cloud (index.json ; reconstruite depuis les dossiers si l'index manque ou est illisible) */
+async function cloudRemoteList() {
+  let list = null;
+  const idxFile = await ghGetFile('index.json');
+  if (idxFile) {
+    try {
+      const idx = JSON.parse(idxFile.text);
+      if (Array.isArray(idx.projects)) list = idx.projects;
+    } catch (e) { /* index illisible */ }
+  }
+  if (!list) list = await ghRebuildIndex();
+  cloudIdx = { list: list, at: Date.now() };
+  return list;
+}
+/* Reconstruit la liste des projets depuis projects/<id>/info.json */
+async function ghRebuildIndex() {
+  const r = await ghApi('GET', '/contents/projects?ref=' + CLOUD_REPO.branch);
+  if (!r.ok || !Array.isArray(r.data)) return [];
+  const list = [];
+  for (const d of r.data) {
+    if (d.type !== 'dir') continue;
+    try {
+      const f = await ghGetFile('projects/' + d.name + '/info.json');
+      if (!f) continue;
+      const info = JSON.parse(f.text);
+      list.push({ id: info.id || d.name, name: info.name || d.name, updatedAt: info.updatedAt || 0, currentVersion: info.currentVersion, deleted: !!info.deleted });
+    } catch (e) { /* dossier illisible : ignoré */ }
+  }
+  return list;
+}
+/* Lit la version courante d'un projet sur le Cloud sans la stocker sur l'appareil */
+async function cloudFetchProject(id) {
+  const infoFile = await ghGetFile('projects/' + id + '/info.json');
+  if (!infoFile) throw new Error('Projet introuvable sur le cloud : ' + id);
+  const info = JSON.parse(infoFile.text);
+  if (!info.currentVersion) throw new Error('Aucune version disponible pour ' + id);
+  return await cloudReadVersion(id, info.currentVersion);
+}
+/* Répercute un renommage sur le Cloud (sans créer de version) */
+async function cloudRenameProject(id, name) {
+  if (!cloudToken.get()) return;
+  try {
+    const f = await ghGetFile('projects/' + id + '/info.json');
+    if (!f) return;
+    const info = JSON.parse(f.text);
+    if (info.name === name) return;
+    info.name = name;
+    await ghPutFile('projects/' + id + '/info.json', JSON.stringify(info, null, 2), 'Rename ' + id, f.sha);
+    await ghWriteIndexEntry(info);
+  } catch (e) {
+    notify('Renommage Cloud impossible : ' + e.message, { kind: 'warn' });
+  }
+}
+/* Recharge dans l'éditeur le projet en cours depuis son enregistrement local */
+async function reloadCurrentFromStore() {
+  const s = projLocal(projects.cur);
+  if (!s) return;
+  try { hist = (await idbGet('hist:' + projects.cur)) || []; } catch (e) { hist = []; }
+  lastHistSig = '';
+  setText(s.text || '');
+}
+/* Liste unique « Projets » : projets de l'appareil + projets du Cloud + corbeille (remote = liste du Cloud, ou null si inconnue) */
+function renderProjectList(remote, err) {
+  const box = $('cloud-projects');
+  if (!box) return;
+  const known = Array.isArray(remote);
+  const connected = !!cloudToken.get();
+  const rows = projects.list.map(p => {
+    const s = projLocal(p.id);
+    const rp = known ? remote.find(r => r.id === p.id && !r.deleted) : null;
+    const isCur = p.id === projects.cur;
+    return {
+      p, s, rp, isCur,
+      hasLocal: !!s || isCur,
+      inCloud: known ? !!rp : !!(s && s._cloudHash),
+      unsaved: projNeedsBackup(p.id),
+      newer: !!(rp && rp.updatedAt > ((s && s._cloudUpdatedAt) || 0))
+    };
+  });
+rows.sort((a, b) => (b.isCur - a.isCur) || (((b.rp && b.rp.updatedAt) || 0) - ((a.rp && a.rp.updatedAt) || 0)));
+const trash = known ? remote.filter(r => r.deleted && !projects.list.some(p => p.id === r.id)) : [];
+
+let html = '';
+if (err) html += '<div class="note warn">Cloud injoignable (' + esc(err) + ') · liste de l\'appareil affichée.</div>';
+const quota = storageInfo.quota && storageInfo.usage > storageInfo.quota * 0.6
+  ? ' · navigateur ' + Math.round(storageInfo.usage / storageInfo.quota * 100) + ' %'
+  : '';
+html += '<div class="pj-head"><div class="pj-sum">' + rows.length + ' projet' + (rows.length > 1 ? 's' : '') + ' · ' +
+  fmtSize(estimateLocalStorageSize()) + ' local' + quota + '</div>' +
+  '<button class="pj-help" id="pj-help" aria-label="Légende des icônes">?</button>' +
+  '<button class="sm primary" id="cloud-new-proj">+ Nouveau</button></div>';
+  html += rows.map(r => {
+  const kb = r.isCur ? Math.round($('src').value.length / 1024) : (r.s && typeof r.s.text === 'string' ? Math.round(r.s.text.length / 1024) : 0);
+  const conf = cloudConflicts.has(r.p.id) || (r.unsaved && r.newer);
+  const pid = esc(r.p.id);
+  const open = projMenuOpen.has(r.p.id);
+  const bd = [];
+  /* Où est le projet (appareil / Cloud), puis son état */
+  if (r.isCur) bd.push(pjBadge('act'));
+  if (r.hasLocal) bd.push(pjBadge('dev'));
+  if (r.inCloud) bd.push(pjBadge('cld'));
+  if (conf) bd.push(pjBadge('conf'));
+  else if (r.unsaved && (connected || r.inCloud)) bd.push(pjBadge('pend'));
+  else if (r.newer || !r.hasLocal) bd.push(pjBadge('new'));
+  else if (r.inCloud) bd.push(pjBadge('ok'));
+  const fmt = ts => new Date(ts).toLocaleString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+  const sub = [];
+  if (r.hasLocal) sub.push(kb + ' Ko');
+  if (r.inCloud && r.rp && r.rp.updatedAt) sub.push(esc(r.rp.currentVersion || '—') + ' · ' + fmt(r.rp.updatedAt));
+  const attr = r.isCur ? 'data-menu' : 'data-cloud-pull';
+  return '<div class="pj' + (r.isCur ? ' on' : '') + '"><div class="pj-row">' +
+    '<button class="pj-main" ' + attr + '="' + pid + '"><span class="pj-body">' +
+    '<span class="pj-nm"><span class="pj-t">' + esc(r.p.name) + '</span><span class="bdgs">' + bd.join('') + '</span></span>' +
+    '<span class="pj-sub">' + (sub.join(' · ') || '—') + '</span></span></button>' +
+    '<button class="pj-more" data-menu="' + pid + '" aria-expanded="' + (open ? 'true' : 'false') + '" aria-label="Actions">⋯</button></div>' +
+    (conf ? '<div class="pj-conf"><button class="sm primary" style="flex:1" data-conflict="' + pid + '">Résoudre le conflit</button></div>' : '') +
+    '<div class="pj-acts"' + (open ? '' : ' hidden') + '>' +
+    (r.inCloud ? '<button class="sm" data-cloud-versions="' + pid + '">Versions</button>' : '') +
+    '<button class="sm" data-proj-ren="' + pid + '">Renommer</button>' +
+    (r.hasLocal || !r.inCloud ? '<button class="sm" data-proj-del="' + pid + '">' + (r.inCloud || connected ? 'Retirer' : 'Supprimer') + '</button>' : '') +
+    (r.inCloud ? '<button class="sm" data-trash="' + pid + '">Corbeille</button>' : '') +
+    '<button class="sm danger" data-purge="' + pid + '">Supprimer partout</button>' +
+    '</div><div class="pj-ver" id="cloud-versions-' + pid + '"></div></div>';
+  }).join('');
+if (trash.length) {
+  html += '<div class="status" style="margin-top:14px">Corbeille (' + trash.length + ')</div>';
+  html += trash.map(t =>
+    '<div class="pj"><div class="pj-row"><div class="pj-main" style="cursor:default"><span class="pj-body">' +
+    '<span class="pj-nm"><span class="pj-t">' + esc(t.name || t.id) + '</span><span class="bdgs">' + pjBadge('cld') + pjBadge('bin') + '</span></span></span></div></div>' +
+    '<div class="pj-acts"><button class="sm primary" data-untrash="' + esc(t.id) + '">Restaurer</button>' +
+    '<button class="sm danger" data-purge="' + esc(t.id) + '">Supprimer</button></div></div>').join('');
+}
+  box.innerHTML = html;
+}
+function pjBadge(k) {
+  const b = PJ_BADGES[k];
+  return '<span class="bdg bd-' + k + '" title="' + b[1] + '" aria-label="' + b[1] + '"><svg class="ic"><use href="#' + b[0] + '"/></svg></span>';
+}
+function initCloud() {
+  const btn = $('b-cloud');
+  if (!btn) return;
+
+  btn.onclick = () => {
+    openOv('clouddlg');
+    renderCloudDialog();
+  };
+
+  $('clouddlg-x').onclick = () => closeOv('clouddlg');
+  $('clouddlg').addEventListener('click', e => { if (e.target === $('clouddlg')) closeOv('clouddlg'); });
+
+  $('cloud-connect').onclick = async () => {
+    const t = $('cloud-token').value.trim();
+    if (!t) { notify('Collez un token GitHub.', { kind: 'err' }); return; }
+    const b = $('cloud-connect');
+    b.disabled = true;
+    b.textContent = 'Connexion…';
+    try {
+      await cloudConnect(t);
+      $('cloud-token').value = '';
+      notify('Connecté à GitHub ✓', { kind: 'ok' });
+      await renderCloudDialog();
+      // Synchronisation automatique après la première connexion
+      setTimeout(() => { cloudAutoSync().catch(e => console.warn(e)); }, 500);
+    } catch (e) {
+      notify('Connexion échouée : ' + e.message, { kind: 'err', ms: 0 });
+    } finally {
+      b.disabled = false;
+      b.textContent = 'Se connecter';
+    }
+  };
+
+  $('cloud-forget').onclick = async () => {
+    const yes = await askDialog({
+      title: 'Oublier le token',
+      msg: 'Supprimer le token GitHub enregistré dans ce navigateur ?',
+      ok: 'Oublier',
+      danger: true
+    });
+    if (!yes) return;
+    cloudToken.set('');
+    notify('Token oublié', { kind: 'ok' });
+    await renderCloudDialog();
+  };
+
+  $('cloud-backup').onclick = async () => {
+    if (!projects.list.length) { notify('Aucun projet local.', { kind: 'err' }); return; }
+const yes = await askDialog({
+  title: 'Sauvegarder dans le cloud',
+  msg: 'Sauvegarder sur le Cloud les projets modifiés depuis leur dernière sauvegarde ?\nChaque sauvegarde crée une nouvelle version : aucune version existante n\'est écrasée.',
+  ok: 'Sauvegarder'
+});
+    if (!yes) return;
+    const b = $('cloud-backup');
+    b.disabled = true;
+    b.textContent = 'Envoi…';
+try {
+  const r = await cloudBackupAll();
+  if (r.errors.length) {
+    notify(r.done.length + ' sauvegardé(s), ' + r.errors.length + ' erreur(s) : ' + r.errors[0], { kind: 'warn', ms: 0 });
+  } else if (!r.done.length) {
+    notify('Tout est déjà à jour sur le Cloud ✓', { kind: 'ok' });
+  } else {
+    notify(r.done.length + ' projet(s) sauvegardé(s) ✓', { kind: 'ok' });
+  }
+  await renderCloudDialog();
+} catch (e) {
+  notify('Sauvegarde impossible : ' + e.message, { kind: 'err', ms: 0 });
+} finally {
+  b.disabled = false;
+  b.textContent = '⬆ Sauvegarder';
+}
+  };
+
+  $('cloud-pull').onclick = async () => {
+const yes = await askDialog({
+  title: 'Mettre à jour depuis le cloud',
+  msg: 'Mettre à jour les projets de cet appareil dont une version plus récente existe sur le Cloud ?\nVos modifications non sauvegardées ne sont jamais écrasées. Les autres projets se récupèrent à la demande dans « Projets ».',
+  ok: 'Mettre à jour'
+});
+    if (!yes) return;
+    const b = $('cloud-pull');
+    b.disabled = true;
+    b.textContent = 'Réception…';
+try {
+  const r = await cloudPullAll();
+  if (!r.pulled.length && !r.errors.length) {
+    notify('Rien à mettre à jour.', { kind: 'ok' });
+  } else if (r.errors.length) {
+    notify(r.pulled.length + ' mis à jour, ' + r.errors.length + ' remarque(s) : ' + r.errors[0], { kind: 'warn', ms: 0 });
+  } else {
+    notify(r.pulled.length + ' projet(s) mis à jour ✓', { kind: 'ok' });
+  }
+  renderProjects();
+  if (r.pulled.some(p => p.id === projects.cur)) await reloadCurrentFromStore();
+  await renderCloudDialog();
+} catch (e) {
+  notify('Mise à jour impossible : ' + e.message, { kind: 'err', ms: 0 });
+} finally {
+  b.disabled = false;
+  b.textContent = '⬇ Mettre à jour';
+}
+  };
+
+  $('cloud-refresh').onclick = () => renderCloudDialog();
+
+  $('cloud-projects').addEventListener('click', async e => {
+const b = e.target.closest('button[data-menu], button[data-cloud-pull], button[data-cloud-versions], button[data-cloud-restore], button[data-proj-ren], button[data-proj-del], button[data-conflict], button[data-trash], button[data-untrash], button[data-purge], #cloud-new-proj');
+if (!b) return;
+    
+    if (b.id === 'cloud-new-proj') {
+      await newProject();
+      await renderCloudDialog();
+      return;
+    }
+
+if (b.dataset.menu) {
+  const pj = b.closest('.pj');
+  const acts = pj && pj.querySelector('.pj-acts');
+  if (acts) {
+    acts.hidden = !acts.hidden;
+    if (acts.hidden) projMenuOpen.delete(b.dataset.menu); else projMenuOpen.add(b.dataset.menu);
+    const mb = pj.querySelector('.pj-more');
+    if (mb) mb.setAttribute('aria-expanded', acts.hidden ? 'false' : 'true');
+  }
+} else if (b.dataset.cloudPull) {
+  const pid = b.dataset.cloudPull;
+  b.disabled = true;
+  try {
+    await switchProject(pid);
+    if (projects.cur === pid) closeOv('clouddlg');
+  } catch (err) {
+    notify('Échec : ' + err.message, { kind: 'err', ms: 0 });
+  }
+  b.disabled = false;
+  if (isOpen('clouddlg')) await renderCloudDialog();
+} else if (b.dataset.cloudVersions) {
+  await cloudShowVersions(b.dataset.cloudVersions);
+} else if (b.dataset.cloudRestore) {
+  const parts = b.dataset.cloudRestore.split('|');
+  await cloudRestoreVersion(parts[0], parts[1]);
+} else if (b.dataset.projRen) {
+  await renameProject(b.dataset.projRen);
+  await renderCloudDialog();
+} else if (b.dataset.projDel) {
+  await deleteProject(b.dataset.projDel);
+  await renderCloudDialog();
+} else if (b.dataset.conflict) {
+  await openConflict(b.dataset.conflict);
+} else if (b.dataset.trash) {
+  await cloudTrashProject(b.dataset.trash);
+  await renderCloudDialog();
+} else if (b.dataset.untrash) {
+  await cloudRestoreTrash(b.dataset.untrash);
+  await renderCloudDialog();
+} else if (b.dataset.purge) {
+  await cloudPurgeProject(b.dataset.purge);
+  await renderCloudDialog();
+}
+  });
+
+  // Synchronisation automatique au démarrage si un token est enregistré
+  if (cloudToken.get()) {
+    const st = $('cloud-last-sync');
+    if (st) st.textContent = 'Synchronisation automatique en cours…';
+    setTimeout(() => {
+      cloudAutoSync().catch(e => console.warn('Auto-sync error', e));
+    }, 1500);
+  }
+}
+async function cloudAutoSync() {
+if (!cloudToken.get()) return;
+if (!projBooted) { setTimeout(() => cloudAutoSync().catch(() => { }), 500); return; }
+
+const st = $('cloud-last-sync');
+if (st) st.textContent = 'Synchronisation automatique en cours…';
+  
+try {
+  const remoteProjects = await cloudRemoteList();
+  const live = remoteProjects.filter(rp => !rp.deleted);
+
+  /* Tous les projets du Cloud (hors corbeille) apparaissent dans la liste « Projets » */
+  let listChanged = false;
+  live.forEach(rp => {
+    if (!projects.list.some(p => p.id === rp.id)) {
+      projects.list.push({ id: rp.id, name: rp.name || rp.id });
+      listChanged = true;
+    }
+  });
+  if (listChanged) {
+    saveProjects();
+    renderProjects();
+  }
+
+  let changed = false;
+
+  /* Projet en cours : mis à jour depuis le Cloud seulement s'il n'a pas été modifié ici
+     (s'il l'a été, la sauvegarde automatique ci-dessous détecte un contenu identique ou un vrai conflit) */
+  const curRemote = live.find(rp => rp.id === projects.cur);
+  if (curRemote) {
+    const s = projLocal(projects.cur);
+    const localUpdatedAt = s && s._cloudUpdatedAt ? s._cloudUpdatedAt : 0;
+    if (curRemote.updatedAt > localUpdatedAt && !projNeedsBackup(projects.cur)) {
+      await cloudPullVersion(projects.cur, curRemote.currentVersion, curRemote.updatedAt);
+      changed = true;
+    }
+  } else if (!projLocal(projects.cur) && live.length) {
+    /* Aucun contenu sur l'appareil pour le projet actuel : on ouvre le projet Cloud le plus récent */
+    const latest = live.slice().sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0))[0];
+    await cloudPullProject(latest.id);
+    projects.cur = latest.id;
+    saveProjects();
+    changed = true;
+  }
+
+  if (changed) {
+    await reloadCurrentFromStore();
+    renderProjects();
+    notify('Synchronisation cloud terminée ✓', { kind: 'ok' });
+  }
+
+  if (st) st.textContent = 'Dernière synchronisation : ' + new Date().toLocaleString('fr-FR');
+  if (isOpen('clouddlg')) await renderCloudDialog();
+  updateCloudIcon();
+
+  /* File d'attente : les projets modifiés et pas encore sauvegardés partent maintenant */
+  cloudAutoBackup(true);
+
+} catch (e) {
+  console.warn('Auto-sync error', e);
+  cloudErr = e.message || String(e);
+  updateCloudIcon();
+  if (st) st.textContent = 'Erreur de synchronisation : ' + e.message;
+}
+}
+/* ---------- Compression des versions Cloud ---------- */
+async function gzipText(text) {
+  const cs = new Blob([text]).stream().pipeThrough(new CompressionStream('gzip'));
+  return new Uint8Array(await new Response(cs).arrayBuffer());
+}
+async function gunzipBytes(bytes) {
+  const ds = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+  return await new Response(ds).text();
+}
+/* Lecture binaire d'un fichier du dépôt (au-delà de 1 Mo : API « blobs ») */
+async function ghGetBytes(path) {
+  const r = await ghApi('GET', '/contents/' + path + '?ref=' + CLOUD_REPO.branch);
+  if (!r.ok) return null;
+  const d = r.data;
+  let b64 = '';
+  if (d.content && d.content.length) {
+    b64 = d.content.replace(/\s/g, '');
+  } else if (d.sha && d.size > 0) {
+    const bl = await ghApi('GET', '/git/blobs/' + d.sha);
+    if (bl.ok && bl.data && bl.data.content) b64 = bl.data.content.replace(/\s/g, '');
+  }
+  const bin = atob(b64);
+  const bytes = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+  return { bytes: bytes, sha: d.sha, path: d.path };
+}
+/* Écriture binaire d'un fichier (mêmes règles que ghPutFile : null = ne doit pas exister, undefined = sha courant) */
+async function ghPutBytes(path, bytes, message, expectedSha) {
+  let sha = expectedSha;
+  if (sha === undefined) {
+    const ex = await ghApi('GET', '/contents/' + path + '?ref=' + CLOUD_REPO.branch);
+    sha = ex.ok && ex.data ? ex.data.sha : null;
+  }
+  let bin = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  const body = { message: message, content: btoa(bin), branch: CLOUD_REPO.branch };
+  if (sha) body.sha = sha;
+  try {
+    const r = await ghApi('PUT', '/contents/' + path, body);
+    return r.data;
+  } catch (e) {
+    if (expectedSha === null && /422|sha|supplied/i.test(e.message)) {
+      throw new Error('Conflit sur « ' + path + ' » : le fichier existe déjà (protection contre l\'écrasement).');
+    }
+    if (/409|Conflit/i.test(e.message)) {
+      throw new Error('Conflit sur « ' + path + ' » : le fichier distant a changé. Rafraîchissez puis réessayez.');
+    }
+    throw e;
+  }
+}
+/* Lit une version : .json.gz d'abord, puis .json (anciennes versions) */
+async function cloudReadVersion(id, versionId) {
+  const base = 'projects/' + id + '/versions/' + versionId;
+  const g = await ghGetBytes(base + '.json.gz');
+  if (g) return JSON.parse(await gunzipBytes(g.bytes));
+  const f = await ghGetFile(base + '.json');
+  if (!f) throw new Error('Version introuvable : ' + versionId);
+  return JSON.parse(f.text);
+}
+/* Versions à conserver : les N dernières, la version courante, puis 1 par jour (90 jours) et 1 par mois au-delà */
+function retentionKeep(versions, current) {
+  const keep = new Set();
+  const seen = new Set();
+  const now = Date.now(), day = 86400000;
+  versions.slice().sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).forEach((v, i) => {
+    const iso = new Date(v.createdAt || 0).toISOString();
+    const key = now - (v.createdAt || 0) < 90 * day ? 'd' + iso.slice(0, 10) : 'm' + iso.slice(0, 7);
+    if (i < RETENTION_LAST || v.id === current) { keep.add(v.id); seen.add(key); return; }
+    if (!seen.has(key)) { seen.add(key); keep.add(v.id); }
+  });
+  return keep;
+}
+/* Supprime les anciennes versions hors rétention (12 au plus par passage ; jamais la version courante) */
+async function cloudPrune(id, info) {
+  const keep = retentionKeep(info.versions, info.currentVersion);
+  const drop = info.versions.filter(v => !keep.has(v.id)).slice(0, 12);
+  if (!drop.length) return;
+  const dir = await ghApi('GET', '/contents/projects/' + id + '/versions?ref=' + CLOUD_REPO.branch);
+  if (!dir.ok || !Array.isArray(dir.data)) return;
+  const shas = new Map(dir.data.map(d => [d.name, d.sha]));
+  const gone = new Set();
+  for (const v of drop) {
+    let ok = true;
+    for (const ext of ['.json.gz', '.json']) {
+      const h = shas.get(v.id + ext);
+      if (!h) continue;
+      try {
+        await ghApi('DELETE', '/contents/projects/' + id + '/versions/' + v.id + ext, { message: 'Prune ' + v.id, sha: h, branch: CLOUD_REPO.branch });
+      } catch (e) { ok = false; }
+    }
+    if (ok) gone.add(v.id);
+  }
+  if (!gone.size) return;
+  const path = 'projects/' + id + '/info.json';
+  const f = await ghGetFile(path);
+  if (!f) return;
+  const cur = JSON.parse(f.text);
+  cur.versions = (cur.versions || []).filter(v => !gone.has(v.id));
+  await ghPutFile(path, JSON.stringify(cur, null, 2), 'Prune versions of ' + id, f.sha);
+}
+async function cloudRemoteInfo(id) {
+  const f = await ghGetFile('projects/' + id + '/info.json');
+  if (!f) return null;
+  try { return JSON.parse(f.text); } catch (e) { return null; }
+}
+/* Met à jour le dernier état connu du Cloud après une écriture */
+function cloudIdxSet(info) {
+  if (!cloudIdx.list) return;
+  cloudIdx.list = cloudIdx.list.filter(x => x.id !== info.id).concat([{
+    id: info.id, name: info.name, updatedAt: info.updatedAt, currentVersion: info.currentVersion, deleted: !!info.deleted
+  }]);
+}
+/* Sauvegarde Cloud d'un projet : détecte les conflits, crée la version, met l'index à jour, élague les anciennes versions */
+async function cloudSaveInner(id, force) {
+  if (!force && !projNeedsBackup(id)) return { id: id, skipped: true };
+  cloudBusy++;
+  updateCloudIcon();
+  try {
+    if (!force) {
+      const s = projLocal(id);
+      const ri = await cloudRemoteInfo(id);
+      if (ri && ri.updatedAt > ((s && s._cloudUpdatedAt) || 0)) {
+        /* Le Cloud a une version plus récente : identique à la mienne (rien à faire) ou conflit */
+        const rem = await cloudFetchProject(id);
+        const mine = id === projects.cur ? $('src').value : ((s && s.text) || '');
+        if ((rem.text || '') === mine) {
+          cloudMarkSynced(id, ri.updatedAt, mine);
+          cloudConflicts.delete(id);
+          return { id: id, skipped: true, info: ri };
+        }
+        cloudConflicts.add(id);
+        const err = new Error('Conflit : ce projet a aussi changé sur le Cloud');
+        err.conflict = true;
+        throw err;
+      }
+    }
+    const r = await cloudBackupProject(id);
+    await ghWriteIndexEntry(r.info);
+    cloudIdxSet(r.info);
+    cloudConflicts.delete(id);
+    if (r.info.versions.length > RETENTION_LAST) {
+      try { await cloudPrune(id, r.info); } catch (e) { /* élagage facultatif */ }
+    }
+    cloudErr = '';
+    return r;
+  } catch (e) {
+    if (!e.conflict) cloudErr = e.message || String(e);
+    throw e;
+  } finally {
+    cloudBusy--;
+    updateCloudIcon();
+  }
+}
+/* Point d'entrée unique, en file : deux sauvegardes ne se chevauchent jamais */
+function cloudSaveProject(id, force) {
+  const run = () => cloudSaveInner(id, force);
+  const p = cloudChain.then(run, run);
+  cloudChain = p.catch(() => { });
+  return p;
+}
+function notifyConflict(id) {
+  const p = projects.list.find(x => x.id === id);
+  notify('Conflit : « ' + (p ? p.name : id) + ' » a changé ici et sur le Cloud. Rien n\'est écrasé.', {
+    kind: 'warn', ms: 0, key: 'conflict-' + id,
+    actions: [{ label: 'Résoudre', fn: () => openConflict(id) }]
+  });
+  updateCloudIcon();
+}
+/* Écran de conflit : comparaison (diff) puis choix de la version à garder */
+async function openConflict(id) {
+  conflictId = id;
+  const p = projects.list.find(x => x.id === id);
+  $('conflict-title').textContent = 'Conflit : ' + (p ? p.name : id);
+  $('conflict-msg').textContent = 'Ce projet a changé sur cet appareil ET sur le Cloud depuis la dernière synchronisation. Rien n\'est perdu : choisissez la version à garder.';
+  $('conflict-diff').innerHTML = '<div class="empty">Chargement…</div>';
+  openOv('conflictdlg');
+  try {
+    const rem = await cloudFetchProject(id);
+    const mine = id === projects.cur ? $('src').value : ((projLocal(id) || {}).text || '');
+    $('conflict-diff').innerHTML = '<div class="status" style="margin:6px 10px">« − » Cloud · « + » cet appareil</div>' + renderDiff(rem.text || '', mine);
+  } catch (e) {
+    $('conflict-diff').innerHTML = '<div class="note err">' + esc(e.message) + '</div>';
+  }
+}
+/* mode : mine (ma version devient la version Cloud), cloud (je prends le Cloud), both (le Cloud devient un nouveau projet, je garde aussi la mienne) */
+async function resolveConflict(mode) {
+  const id = conflictId;
+  if (!id) return;
+  const p = projects.list.find(x => x.id === id);
+  const btns = [$('conflict-mine'), $('conflict-cloud'), $('conflict-both')];
+  btns.forEach(b => { b.disabled = true; });
+  try {
+    if (mode === 'cloud') {
+      /* L'ancienne version de l'appareil est rangée dans l'historique par cloudPullVersion */
+      await cloudPullProject(id);
+      cloudConflicts.delete(id);
+      if (id === projects.cur) await reloadCurrentFromStore();
+      notify('Version Cloud chargée (la vôtre est dans l\'historique)', { kind: 'ok' });
+    } else {
+      if (mode === 'both') {
+        const rem = await cloudFetchProject(id);
+        const nid = 'p' + Date.now().toString(36);
+        projects.list.push({ id: nid, name: ((p ? p.name : id) + ' (Cloud)').slice(0, 40) });
+        saveProjects();
+        projPut(nid, { text: rem.text || '', level: rem.level || '2', snap: rem.snap || {}, _cloudUpdatedAt: 0, _cloudHash: '' });
+      }
+      await cloudSaveProject(id, true);
+      notify(mode === 'both' ? 'Les deux versions sont conservées ✓' : 'Votre version est maintenant la version Cloud ✓', { kind: 'ok' });
+    }
+    dismissKey('conflict-' + id);
+    closeOv('conflictdlg');
+    renderProjects();
+    if (isOpen('clouddlg')) await renderCloudDialog();
+  } catch (e) {
+    notify('Échec : ' + e.message, { kind: 'err', ms: 0 });
+  } finally {
+    btns.forEach(b => { b.disabled = false; });
+    updateCloudIcon();
+  }
+}
+/* Sauvegarde automatique : projet actif (all = false) ou tous les projets modifiés (all = true, file d'attente).
+   En cas d'échec réseau, nouvelle tentative avec délai croissant ; au retour du réseau, tout repart. */
+async function cloudAutoBackup(all) {
+  if (!autoCloudOn || !projBooted || !cloudToken.get() || !navigator.onLine) return;
+  if (cloudAutoBackup._busy) return;
+  const todo = (all ? projects.list.map(p => p.id) : [projects.cur])
+    .filter(id => !cloudConflicts.has(id) && projNeedsBackup(id));
+  if (!todo.length) return;
+  cloudAutoBackup._busy = true;
+  let failed = false;
+  try {
+    for (const id of todo) {
+      try {
+        const r = await cloudSaveProject(id);
+        if (!r.skipped) {
+          cloudLastAuto = Date.now();
+          notify('☁ Sauvegardé sur le Cloud', { kind: 'ok', ms: 1200, key: 'autocloud' });
+        }
+      } catch (e) {
+        if (e && e.conflict) notifyConflict(id);
+        else { failed = true; break; }
+      }
+    }
+  } finally {
+    cloudAutoBackup._busy = false;
+  }
+  clearTimeout(cloudRetryT);
+  if (failed) {
+    cloudRetryT = setTimeout(() => cloudAutoBackup(true), Math.min(600000, 30000 * Math.pow(2, cloudRetryN++)));
+  } else {
+    cloudRetryN = 0;
+  }
+  updateCloudIcon();
+}
+/* Relancée à chaque enregistrement : la sauvegarde part après 30 s sans frappe (et au moins 2 min après la précédente) */
+function scheduleAutoCloud() {
+  clearTimeout(cloudAutoT);
+  if (!autoCloudOn || !projBooted || !cloudToken.get()) return;
+  if (cloudConflicts.has(projects.cur) || !projNeedsBackup(projects.cur)) return;
+  const wait = Math.max(30000, 120000 - (Date.now() - cloudLastAuto));
+  cloudAutoT = setTimeout(() => cloudAutoBackup(false), wait);
+}
+/* Icône nuage : vert = synchronisé, orange = à envoyer, rouge = erreur, cyan clignotant = en cours, orangé = conflit */
+function updateCloudIcon() {
+  const btn = $('b-cloud');
+  if (!btn) return;
+  let st = 'off', tip = 'Cloud GitHub (non connecté)';
+  if (cloudToken.get()) {
+    const pend = projects.list.filter(p => projNeedsBackup(p.id)).length;
+    if (cloudBusy > 0) { st = 'busy'; tip = 'Synchronisation en cours…'; }
+    else if (cloudConflicts.size) { st = 'conf'; tip = 'Conflit à résoudre (touchez ce bouton)'; }
+    else if (cloudErr) { st = 'err'; tip = 'Erreur de synchronisation : ' + cloudErr; }
+    else if (pend) { st = 'pend'; tip = pend + ' projet(s) à sauvegarder' + (navigator.onLine ? '' : ' (hors ligne : envoi au retour du réseau)'); }
+    else { st = 'ok'; tip = 'Tout est synchronisé avec le Cloud'; }
+  }
+  btn.className = 'iconbtn' + (st === 'off' ? '' : ' cs-' + st);
+  btn.title = tip;
+}
+/* Corbeille du Cloud : le projet reste récupérable (rien n'est supprimé définitivement) */
+async function cloudTrashProject(id) {
+  const p = projects.list.find(x => x.id === id);
+  if (!p) return;
+  const yes = await askDialog({
+    title: 'Mettre à la corbeille',
+    msg: '« ' + p.name + ' » ira dans la corbeille du Cloud (restaurable à tout moment) et sera retiré de cet appareil.',
+    ok: 'Corbeille',
+    danger: true
+  });
+  if (!yes) return;
+  try {
+    if (projNeedsBackup(id)) await cloudSaveProject(id);
+    if (id === projects.cur) {
+      const other = projects.list.find(x => x.id !== id);
+      if (!other) { notify('Impossible : c\'est le seul projet. Créez-en un autre d\'abord.', { kind: 'err' }); return; }
+      await switchProject(other.id);
+      if (projects.cur === id) return;
+    }
+    const path = 'projects/' + id + '/info.json';
+    const f = await ghGetFile(path);
+    if (f) {
+      const info = JSON.parse(f.text);
+      info.deleted = true;
+      info.deletedAt = Date.now();
+      await ghPutFile(path, JSON.stringify(info, null, 2), 'Trash ' + id, f.sha);
+      await ghWriteIndexEntry(info);
+      cloudIdxSet(info);
+    }
+    cloudConflicts.delete(id);
+    projects.list = projects.list.filter(x => x.id !== id);
+    saveProjects();
+    projDrop(id);
+    if (idbOK) idbDel('hist:' + id).catch(() => { });
+    renderProjects();
+    notify('Projet « ' + p.name + ' » mis à la corbeille du Cloud', { kind: 'ok' });
+  } catch (e) {
+    if (e && e.conflict) notifyConflict(id);
+    else notify('Corbeille impossible : ' + e.message, { kind: 'err', ms: 0 });
+  }
+}
+async function cloudRestoreTrash(id) {
+  try {
+    const path = 'projects/' + id + '/info.json';
+    const f = await ghGetFile(path);
+    if (!f) throw new Error('Projet introuvable sur le Cloud');
+    const info = JSON.parse(f.text);
+    info.deleted = false;
+    delete info.deletedAt;
+    await ghPutFile(path, JSON.stringify(info, null, 2), 'Restore ' + id, f.sha);
+    await ghWriteIndexEntry(info);
+    cloudIdxSet(info);
+    if (!projects.list.some(p => p.id === id)) {
+      projects.list.push({ id: id, name: info.name || id });
+      saveProjects();
+    }
+    renderProjects();
+    notify('Projet « ' + (info.name || id) + ' » restauré ✓', { kind: 'ok' });
+  } catch (e) {
+    notify('Restauration impossible : ' + e.message, { kind: 'err', ms: 0 });
+  }
+}
+/* Supprime sur le Cloud tous les fichiers d'un projet (versions, info.json) puis son entrée dans index.json */
+async function ghPurgeProject(id) {
+  const base = 'projects/' + id;
+  const del = async f => {
+    await ghApi('DELETE', '/contents/' + f.path, { message: 'Purge ' + id, sha: f.sha, branch: CLOUD_REPO.branch });
+  };
+  const root = await ghApi('GET', '/contents/' + base + '?ref=' + CLOUD_REPO.branch);
+  if (root.ok && Array.isArray(root.data)) {
+    const vdir = root.data.find(d => d.type === 'dir' && d.name === 'versions');
+    if (vdir) {
+      const vs = await ghApi('GET', '/contents/' + base + '/versions?ref=' + CLOUD_REPO.branch);
+      if (vs.ok && Array.isArray(vs.data)) {
+        for (const f of vs.data) { if (f.type === 'file') await del(f); }
+      }
+    }
+    for (const f of root.data) {
+      if (f.type === 'file' && f.name !== 'info.json') await del(f);
+    }
+    const inf = root.data.find(d => d.type === 'file' && d.name === 'info.json');
+    if (inf) await del(inf);
+  }
+  const idxFile = await ghGetFile('index.json');
+  if (idxFile) {
+    let idx = null;
+    try { idx = JSON.parse(idxFile.text); } catch (e) { /* index illisible */ }
+    if (idx && Array.isArray(idx.projects)) {
+      idx.projects = idx.projects.filter(x => x.id !== id);
+      idx.updatedAt = Date.now();
+      await ghPutFile('index.json', JSON.stringify(idx, null, 2), 'Purge ' + id + ' from index', idxFile.sha);
+    }
+  }
+  if (cloudIdx.list) cloudIdx.list = cloudIdx.list.filter(x => x.id !== id);
+}
+/* Suppression définitive : appareil + Cloud (irréversible) */
+async function cloudPurgeProject(id) {
+  const p = projects.list.find(x => x.id === id);
+  const rp = cloudIdx.list && cloudIdx.list.find(r => r.id === id);
+  const name = p ? p.name : ((rp && rp.name) || id);
+  const connected = !!cloudToken.get();
+  if (p && projects.list.length < 2) {
+    notify('Impossible : c\'est le seul projet. Créez-en un autre d\'abord.', { kind: 'err' });
+    return false;
+  }
+  const yes = await askDialog({
+    title: 'Supprimer partout',
+    msg: connected
+      ? '« ' + name + ' » sera supprimé DÉFINITIVEMENT de cet appareil et du Cloud, avec toutes ses versions.\n\nCette action est irréversible.'
+      : '« ' + name + ' » sera supprimé DÉFINITIVEMENT de cet appareil.\n\nLe Cloud n\'est pas connecté : s\'il y existe, il n\'y sera pas supprimé.',
+    ok: 'Supprimer définitivement',
+    danger: true
+  });
+  if (!yes) return false;
+  try {
+    if (p && id === projects.cur) {
+      const other = projects.list.find(x => x.id !== id && projLocal(x.id)) || projects.list.find(x => x.id !== id);
+      await switchProject(other.id, !!projLocal(other.id));
+      if (projects.cur === id) return false;
+    }
+    if (connected) {
+      notify('Suppression sur le Cloud…', { kind: 'ok', key: 'purge', ms: 0 });
+      const run = () => ghPurgeProject(id);
+      const pr = cloudChain.then(run, run);
+      cloudChain = pr.catch(() => { });
+      await pr;
+      dismissKey('purge');
+    }
+    cloudConflicts.delete(id);
+    dismissKey('conflict-' + id);
+    projects.list = projects.list.filter(x => x.id !== id);
+    saveProjects();
+    projDrop(id);
+    if (idbOK) idbDel('hist:' + id).catch(() => { });
+    renderProjects();
+    updateCloudIcon();
+    notify('Projet « ' + name + ' » supprimé' + (connected ? ' (appareil et Cloud)' : ' de l\'appareil'), { kind: 'ok' });
+    return true;
+  } catch (e) {
+    dismissKey('purge');
+    notify('Suppression impossible : ' + e.message, { kind: 'err', ms: 0 });
+    return false;
+  }
+}
+initCloud();
+/* Sauvegarde automatique, file d'attente hors-ligne, écran de conflit, écriture sûre à la fermeture */
+function initSync() {
+  const cb = $('cloud-auto');
+  if (cb) {
+    cb.checked = autoCloudOn;
+    cb.addEventListener('change', () => {
+      autoCloudOn = cb.checked;
+      try { localStorage.setItem('blocs.autocloud', autoCloudOn ? '1' : '0'); } catch (e) { /* stockage indisponible */ }
+      if (autoCloudOn) scheduleAutoCloud(); else clearTimeout(cloudAutoT);
+      notify(autoCloudOn ? 'Sauvegarde automatique activée' : 'Sauvegarde automatique désactivée', { kind: 'ok', ms: 1500 });
+    });
+  }
+  window.addEventListener('online', () => { cloudRetryN = 0; cloudAutoBackup(true); updateCloudIcon(); });
+  window.addEventListener('offline', updateCloudIcon);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') { projFlush(); cloudAutoBackup(true); }
+    else if (cloudToken.get()) cloudAutoBackup(true);
+  });
+  window.addEventListener('pagehide', () => { projFlush(); });
+  $('conflictdlg-x').onclick = () => closeOv('conflictdlg');
+  $('conflict-mine').onclick = () => resolveConflict('mine');
+  $('conflict-cloud').onclick = () => resolveConflict('cloud');
+  $('conflict-both').onclick = () => resolveConflict('both');
+  updateCloudIcon();
+}
+initSync();
 
 </script>
 <script>
